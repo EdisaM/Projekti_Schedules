@@ -1,11 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+
     tools:context="com.example.twin.projekti_schedules.MainActivity">
 
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="321dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorPrimary"
+        android:contextClickable="false"
+        android:text="Sign Up"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="480dp"
+        tools:layout_editor_absoluteY="630dp" />
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/relativeLayout2">
+
+
+            <EditText
+                android:id="@+id/FirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="200dp"
+                android:ems="10"
+                android:hint="First Name"
+                android:inputType="textPersonName"
+                android:selectAllOnFocus="false"
+                android:singleLine="false"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/LastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/FirstName"
+                android:layout_alignStart="@+id/FirstName"
+                android:layout_below="@+id/FirstName"
+                android:ems="10"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/Email"
+                android:layout_alignStart="@+id/Email"
+                android:layout_below="@+id/Email"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textNoSuggestions|textPassword"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText"
+
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/LastName"
+                android:layout_alignStart="@+id/LastName"
+                android:layout_below="@+id/LastName"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                app:srcCompat="@drawable/logo1" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/loginbutton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/relativeLayout2"
+            android:text="Already have an account?"
+            android:textColor="@android:color/holo_blue_light"
+            android:textColorLink="@color/colorText"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+    </RelativeLayout>
+
