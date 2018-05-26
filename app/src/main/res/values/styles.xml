@@ -8,8 +8,8 @@
         <item name="colorAccent">#f4a72c</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="colorControlNormal">#f4a72c</item>
-        <item name="colorControlActivated">#efb54a</item>
+        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="colorControlActivated">#4beffd</item>
 
     </style>
 

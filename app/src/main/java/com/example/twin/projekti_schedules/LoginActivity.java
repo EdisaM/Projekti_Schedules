@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //Declaration Button
     Button buttonLogin;
+    Button forgotPass;
 
     //Declaration SqliteHelper
     SqliteHelper sqliteHelper;
@@ -39,6 +40,18 @@ public class LoginActivity extends AppCompatActivity {
         sqliteHelper = new SqliteHelper(this);
         initCreateAccountTextView();
         initViews();
+
+
+        //set click event of forgot password button
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ii=new Intent(LoginActivity.this, forgotPassword.class);
+                startActivity(ii);
+
+            }
+        });
+
 
         //set click event of login button
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
 
 
     }

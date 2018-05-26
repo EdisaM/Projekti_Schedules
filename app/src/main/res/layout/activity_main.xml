@@ -4,7 +4,9 @@
     style="@android:style/Widget.DeviceDefault.ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background1"
+    android:clipToPadding="false"
+    android:fillViewport="false"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -111,7 +113,9 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:text="Register"
-            android:textColor="@android:color/white" />
+            android:textAppearance="@android:style/TextAppearance.Material.Button"
+            android:textColor="@color/colorText"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewLogin"
