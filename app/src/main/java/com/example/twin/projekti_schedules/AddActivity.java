@@ -13,6 +13,12 @@ import android.widget.TimePicker;
 import android.widget.DatePicker;
 import android.app.DatePickerDialog;
 import android.widget.Toast;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Spinner;
+import android.widget.Button;
+import java.util.ArrayList;
 
 import org.w3c.dom.Text;
 
@@ -23,6 +29,7 @@ public class AddActivity extends AppCompatActivity {
     EditText time;
     EditText date;
     DatePickerDialog datePickerDialog;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +37,30 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.addactivity);
         //  initiate the edit text
         time = (EditText) findViewById(R.id.time);
-
-
         date = (EditText) findViewById(R.id.date);
         // perform click event on edit text
+
+
+        // perform click event listener on edit text
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(AddActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        time.setText(selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
+
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,29 +85,21 @@ public class AddActivity extends AppCompatActivity {
                 datePickerDialog.show();
 
 
-        // perform click event listener on edit text
-        time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-                TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(AddActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        time.setText(selectedHour + ":" + selectedMinute);
-                    }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
-
             }
-        });
-    }
 
 
         });
+
+        ArrayList<ItemData> list=new ArrayList<>();
+        list.add(new ItemData("Select activity type:",R.mipmap.add));
+        list.add(new ItemData("Health",R.mipmap.health));
+        list.add(new ItemData("Education",R.mipmap.education));
+        list.add(new ItemData("Entertainment",R.mipmap.entertainment));
+        list.add(new ItemData("Work",R.mipmap.success));
+        Spinner sp=(Spinner)findViewById(R.id.spinner);
+        SpinnerAdapter adapter=new SpinnerAdapter(this,
+                R.layout.spinner_layout,R.id.txt,list);
+        sp.setAdapter(adapter);
 
 
     }}

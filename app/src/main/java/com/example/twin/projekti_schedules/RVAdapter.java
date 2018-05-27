@@ -35,10 +35,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
 
     List<Aktiviteti> activities;
-    Context context;
-    RVAdapter(List<Aktiviteti> activities,Context context){
+    RVAdapter(List<Aktiviteti> activities){
         this.activities=activities;
-        this.context=context;
     }
 
 
@@ -55,15 +53,30 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
+    public void onBindViewHolder(final PersonViewHolder personViewHolder, final int i) {
         personViewHolder.name.setText(activities.get(i).name);
         personViewHolder.photo.setImageResource(activities.get(i).photoid);
         personViewHolder.photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                  final Intent intent;
+                switch (i){
+                    case 0:
+                        intent =  new Intent(personViewHolder.itemView.getContext(), AddActivity.class);
+                        break;
 
-                Intent Intent = new Intent(context, AddActivity.class);
-                context.startActivity(Intent);
+                    case 1:
+                        intent =  new Intent(personViewHolder.itemView.getContext(), AddActivity.class);
+                        break;
+                    default:
+                        intent =  new Intent(personViewHolder.itemView.getContext(), AddActivity.class);
+                        break;
+                }
+
+
+                personViewHolder.itemView.getContext().startActivity(intent);
+
+
 
 
             }

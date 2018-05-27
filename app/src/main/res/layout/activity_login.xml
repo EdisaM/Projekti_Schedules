@@ -75,6 +75,7 @@
             android:layout_height="wrap_content"
             android:text="Forgot password?"
             android:textAlignment="viewStart"
+            android:layout_gravity="start"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@color/colorText" />
 
