@@ -14,9 +14,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="30dp"
-
-
-
         />
 
     <EditText
@@ -24,8 +21,9 @@
         android:layout_height="70dp"
         android:id="@+id/et1"
         android:layout_below="@+id/spinner"
-        android:hint="   Activity"
+        android:hint="Activity"
         android:textStyle="bold"
+        android:padding="15dp"
         android:layout_marginTop="30dp"
         android:textColorHint="#efb54a"
         android:textColor="#efb54a"

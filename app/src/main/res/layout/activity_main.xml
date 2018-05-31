@@ -4,7 +4,7 @@
     style="@android:style/Widget.DeviceDefault.ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/backgr"
+    android:background="@mipmap/mountain"
     android:clipToPadding="false"
     android:fillViewport="false"
     android:fitsSystemWindows="true">

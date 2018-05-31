@@ -12,11 +12,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.DatePicker;
 import android.app.DatePickerDialog;
-import android.widget.Toast;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import java.util.Date;
+import java.util.Calendar;
 import android.widget.Spinner;
+import android.content.Intent;
 import android.widget.Button;
 import java.util.ArrayList;
 
@@ -28,16 +27,26 @@ public class AddActivity extends AppCompatActivity {
 
     EditText time;
     EditText date;
+    EditText et1;
+    Spinner spinner;
+    TextView txt;
+
     DatePickerDialog datePickerDialog;
     Button button;
+
+    private static final String TAG = "AddActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addactivity);
         //  initiate the edit text
+        et1 = (EditText) findViewById(R.id.et1);
         time = (EditText) findViewById(R.id.time);
         date = (EditText) findViewById(R.id.date);
+        button=(Button)findViewById(R.id.btnadd);
+        spinner=(Spinner)findViewById(R.id.spinner);
+
         // perform click event on edit text
 
 
@@ -88,6 +97,34 @@ public class AddActivity extends AppCompatActivity {
             }
 
 
+        });
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                String today = "30/5/2018";
+
+                et1=(EditText)findViewById(R.id.et1);
+                date = (EditText) findViewById(R.id.date);
+                time = (EditText) findViewById(R.id.time);
+                spinner = (Spinner) findViewById(R.id.spinner);
+                txt=(TextView)findViewById(R.id.txt);
+                String date1=date.toString();
+                Intent intent = new Intent(AddActivity.this, ViewActivity.class);
+                if(date1==today) {
+
+                    intent.putExtra("Activity type",txt.getText().toString());
+                    intent.putExtra("Activity", et1.getText().toString());
+                    intent.putExtra("Time", time.getText().toString());
+                    intent.putExtra("Date", date.getText().toString());
+
+                }
+                startActivity(intent);
+
+            }
         });
 
         ArrayList<ItemData> list=new ArrayList<>();

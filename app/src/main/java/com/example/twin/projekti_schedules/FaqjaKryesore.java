@@ -85,8 +85,13 @@ public class FaqjaKryesore extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         final Intent intent;
         switch(item.getItemId()){
+            case R.id.motivation:
+                intent =  new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
             case R.id.menuAbout:
-                intent =  new Intent(FaqjaKryesore.this, MainActivity.class);
+                intent =  new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.menuSettings:
@@ -94,7 +99,10 @@ public class FaqjaKryesore extends AppCompatActivity{
                 break;
 
             case R.id.menuLogout:
-                Toast.makeText(this, "You clicked logout", Toast.LENGTH_SHORT).show();
+                intent =  new Intent(this, MainActivity.class);
+                startActivity(intent);
+
+
                 break;
 
         }

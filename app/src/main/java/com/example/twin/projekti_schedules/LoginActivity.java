@@ -42,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         initViews();
 
 
+
+
         //set click event of forgot password button
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override

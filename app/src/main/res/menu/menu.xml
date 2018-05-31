@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/motivation"
+        android:title="Motivation"
+        app:showAsAction="always"
+        android:icon="@android:drawable/btn_star_big_on"/>
     <item
         android:id="@+id/menuAbout"
         android:title="About" />
@@ -11,6 +17,7 @@
 
     <item
         android:id="@+id/menuLogout"
-        android:title="Logout" />
+        android:title="Logout"
+        />
 
 </menu>

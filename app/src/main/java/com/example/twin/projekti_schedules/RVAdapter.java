@@ -62,7 +62,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
                   final Intent intent;
                 switch (i){
                     case 0:
-                        intent =  new Intent(personViewHolder.itemView.getContext(), AddActivity.class);
+                        intent =  new Intent(personViewHolder.itemView.getContext(), ViewActivity.class);
                         break;
 
                     case 1:
