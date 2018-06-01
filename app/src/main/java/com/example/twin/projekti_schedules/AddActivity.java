@@ -4,7 +4,9 @@ import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +19,8 @@ import java.util.Calendar;
 import android.widget.Spinner;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import org.w3c.dom.Text;
@@ -46,6 +50,25 @@ public class AddActivity extends AppCompatActivity {
         date = (EditText) findViewById(R.id.date);
         button=(Button)findViewById(R.id.btnadd);
         spinner=(Spinner)findViewById(R.id.spinner);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        //placing toolbar in place of actionbar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),FaqjaKryesore.class));
+                finish();
+            }
+        });
+
+
+
 
         // perform click event on edit text
 
@@ -114,14 +137,14 @@ public class AddActivity extends AppCompatActivity {
                 txt=(TextView)findViewById(R.id.txt);
                 String date1=date.toString();
                 Intent intent = new Intent(AddActivity.this, ViewActivity.class);
-                if(date1==today) {
+
 
                     intent.putExtra("Activity type",txt.getText().toString());
                     intent.putExtra("Activity", et1.getText().toString());
                     intent.putExtra("Time", time.getText().toString());
                     intent.putExtra("Date", date.getText().toString());
 
-                }
+
                 startActivity(intent);
 
             }
@@ -139,4 +162,50 @@ public class AddActivity extends AppCompatActivity {
         sp.setAdapter(adapter);
 
 
-    }}
+
+
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final Intent intent;
+        switch(item.getItemId()){
+
+            case R.id.motivation:
+                intent =  new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.menuAbout:
+                intent =  new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.menuSettings:
+                Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menuLogout:
+                intent =  new Intent(this, MainActivity.class);
+                startActivity(intent);
+
+
+                break;
+
+        }
+        return true;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
+
+
+}

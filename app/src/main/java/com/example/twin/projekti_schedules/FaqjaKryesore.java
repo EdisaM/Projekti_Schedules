@@ -41,18 +41,15 @@ public class FaqjaKryesore extends AppCompatActivity{
         setContentView(R.layout.faqjakryesore);
 
 
-
-
-
-
         //getting the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        //setting the title
-        toolbar.setTitle("BeProductive");
 
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
+
+
+
 
         rv=(RecyclerView)findViewById(R.id.rv);
 
@@ -85,6 +82,7 @@ public class FaqjaKryesore extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         final Intent intent;
         switch(item.getItemId()){
+
             case R.id.motivation:
                 intent =  new Intent(this, MainActivity.class);
                 startActivity(intent);
