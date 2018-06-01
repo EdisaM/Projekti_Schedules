@@ -9,9 +9,9 @@ import android.widget.EditText;
 
 public class forgotPassword extends AppCompatActivity {
 
-    Button buttonSendEmail;
+    Button buttonSendKey;
     //Declaration EditTexts
-    EditText editTextEmail;
+    EditText editTxtKey;
     //Declaration TextInputLayout
     TextInputLayout textInputLayoutEmail;
     @Override
@@ -21,35 +21,7 @@ public class forgotPassword extends AppCompatActivity {
 
 
 
-        buttonSendEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!validate()){
-                    String Email = editTextEmail.getText().toString();
 
-                }
-
-            }
-        });
-    }
-
-    public boolean validate() {
-        boolean valid = false;
-
-        //Get values from EditText fields
-        String Email = editTextEmail.getText().toString();
-
-        //Handling validation for Email field
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
-            valid = false;
-            textInputLayoutEmail.setError("Please enter valid email!");
-        } else {
-            valid = true;
-            textInputLayoutEmail.setError(null);
-        }
-
-
-        return valid;
     }
 
 

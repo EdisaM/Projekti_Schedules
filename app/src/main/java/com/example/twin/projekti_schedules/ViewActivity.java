@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.ListActivity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import java.util.Date;
@@ -13,6 +14,7 @@ import android.widget.SimpleAdapter;
 
 public class ViewActivity extends ListActivity {
 
+    SqliteHelper sqliteHelper;
 
     static final ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
@@ -20,6 +22,7 @@ public class ViewActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addactivity_view);
+        sqliteHelper = new SqliteHelper(this);
 
         SimpleAdapter adapter = new SimpleAdapter(this,list,R.layout.row, new String[] {
                 "Activity type","Activity", "Time", "Date" }, new int[] {
@@ -32,6 +35,8 @@ public class ViewActivity extends ListActivity {
     public void addData() {
         HashMap<String, String> temp = new HashMap<String, String>();
         Bundle bundle = getIntent().getExtras();
+        Cursor c= sqliteHelper.getActivities();
+        c.moveToFirst();
         if (bundle != null) {
             temp.put("Activity type", getIntent().getExtras().getString("Activity type"));
         temp.put("Activity", getIntent().getExtras().getString("Activity"));

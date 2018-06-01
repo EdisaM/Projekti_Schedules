@@ -2,6 +2,8 @@ package com.example.twin.projekti_schedules;
 
 import android.app.TimePickerDialog;
 import android.graphics.Color;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,6 +35,8 @@ public class AddActivity extends AppCompatActivity {
 
     DatePickerDialog datePickerDialog;
     Button button;
+    //Declaration SqliteHelper
+    SqliteHelper sqliteHelper;
 
     private static final String TAG = "AddActivity";
 
@@ -40,11 +44,13 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addactivity);
+        sqliteHelper = new SqliteHelper(this);
         //  initiate the edit text
         et1 = (EditText) findViewById(R.id.et1);
         time = (EditText) findViewById(R.id.time);
         date = (EditText) findViewById(R.id.date);
         button=(Button)findViewById(R.id.btnadd);
+        txt=(TextView)findViewById(R.id.txt);
         spinner=(Spinner)findViewById(R.id.spinner);
 
         // perform click event on edit text
@@ -93,9 +99,7 @@ public class AddActivity extends AppCompatActivity {
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
 
-
             }
-
 
         });
 
@@ -103,29 +107,24 @@ public class AddActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                    String Date = date.getText().toString();
+                    String Activity = et1.getText().toString();
+                    String Time = time.getText().toString();
+
+                    sqliteHelper.addActivity(new activitiesAdd(null, "test", Activity, Date, Time, "0"));
 
 
-                String today = "30/5/2018";
+                    Intent i= new Intent(AddActivity.this, ViewActivity.class);
+                    startActivity(i);
 
-                et1=(EditText)findViewById(R.id.et1);
-                date = (EditText) findViewById(R.id.date);
-                time = (EditText) findViewById(R.id.time);
-                spinner = (Spinner) findViewById(R.id.spinner);
-                txt=(TextView)findViewById(R.id.txt);
-                String date1=date.toString();
-                Intent intent = new Intent(AddActivity.this, ViewActivity.class);
-                if(date1==today) {
 
-                    intent.putExtra("Activity type",txt.getText().toString());
-                    intent.putExtra("Activity", et1.getText().toString());
-                    intent.putExtra("Time", time.getText().toString());
-                    intent.putExtra("Date", date.getText().toString());
 
-                }
-                startActivity(intent);
+
 
             }
         });
+
+
 
         ArrayList<ItemData> list=new ArrayList<>();
         list.add(new ItemData("Select activity type:",R.mipmap.add));
@@ -139,4 +138,6 @@ public class AddActivity extends AppCompatActivity {
         sp.setAdapter(adapter);
 
 
-    }}
+    }
+
+}
