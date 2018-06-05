@@ -1,9 +1,14 @@
 package com.example.twin.projekti_schedules;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Edisa on 5/24/2018.
@@ -12,12 +17,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
-    public static final String DATABASE_NAME = "loopwiki.com";
+    public static final String DATABASE_NAME = "register1.db";
 
     //DATABASE VERSION
     public static final int DATABASE_VERSION = 1;
 
-    //TABLE NAME
+    //TABLE NAME USERS
     public static final String TABLE_USERS = "users";
 
     //TABLE USERS COLUMNS
@@ -32,6 +37,28 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
     //COLUMN password
     public static final String KEY_PASSWORD = "password";
+    //here ends user table data
+    //here begins activity data
+    public static final String TABLE_ACTIVITY="activities";
+    //activity type
+    public static final String KEY_ID_ACTIVITY="idActivity";
+    public static final String KEY_ACTIVITY_TYPE="activityType";
+
+    //activity
+    public static final String KEY_ACTIVITY="activity";
+
+    //date
+    public static final String KEY_DATE="date";
+
+    //time
+    public static final String KEY_TIME="time";
+
+    //status
+    public static final String KEY_STATUS="status";
+
+
+
+
 
     //SQL for creating users table
     public static final String SQL_TABLE_USERS = " CREATE TABLE " + TABLE_USERS
@@ -40,6 +67,15 @@ public class SqliteHelper extends SQLiteOpenHelper {
             + KEY_USER_NAME + " TEXT, "
             + KEY_EMAIL + " TEXT, "
             + KEY_PASSWORD + " TEXT"
+            + " ) ";
+    public static final String SQL_TABLE_ACTIVITY = " CREATE TABLE " + TABLE_ACTIVITY
+            + " ( "
+            + KEY_ID_ACTIVITY + " INTEGER PRIMARY KEY, "
+            + KEY_ACTIVITY_TYPE + " TEXT, "
+            + KEY_ACTIVITY + " TEXT, "
+            + KEY_DATE + " TEXT, "
+            + KEY_TIME + " TEXT, "
+            + KEY_STATUS + " TEXT"
             + " ) ";
 
 
@@ -51,6 +87,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create Table when oncreate gets called
         sqLiteDatabase.execSQL(SQL_TABLE_USERS);
+        sqLiteDatabase.execSQL(SQL_TABLE_ACTIVITY);
 
     }
 
@@ -58,7 +95,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         //drop table to create new one if database version updated
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ACTIVITY);
     }
+
 
     //using this method we can add users to user table
     public void addUser(User user) {
@@ -80,6 +119,38 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         // insert row
         long todo_id = db.insert(TABLE_USERS, null, values);
+    }
+
+    public void addActivity(activitiesAdd A){
+        //get writable database
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        //create content values to insert
+        ContentValues value = new ContentValues();
+
+        //Put activity type in  @values
+        value.put(KEY_ACTIVITY_TYPE, A.activityType);
+
+        //Put activity in  @values
+        value.put(KEY_ACTIVITY, A.activity);
+
+        //Put date in  @values
+        value.put(KEY_DATE, A.date);
+        //put time in @values
+        value.put(KEY_TIME, A.time);
+        //put status in @values
+        value.put(KEY_STATUS, A.status);
+
+        // insert row
+        long id = database.insert(TABLE_ACTIVITY, null, value);
+
+    }
+    public Cursor getActivities(){
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/M/yyyy");
+        String formattedDate = df.format(c);
+        SQLiteDatabase db=getReadableDatabase();
+        return db.query(TABLE_ACTIVITY,  new String[] { "activityType, activity, date, time" }, KEY_DATE + "=" + "'"+formattedDate+"'", null, null, null, null);
     }
 
     public User Authenticate(User user) {

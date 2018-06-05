@@ -13,8 +13,7 @@
 
     </style>
 
-    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
-    </style>
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance"></style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

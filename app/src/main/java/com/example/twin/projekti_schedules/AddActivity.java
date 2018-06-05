@@ -2,11 +2,11 @@ package com.example.twin.projekti_schedules;
 
 import android.app.TimePickerDialog;
 import android.graphics.Color;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -19,8 +19,6 @@ import java.util.Calendar;
 import android.widget.Spinner;
 import android.content.Intent;
 import android.widget.Button;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 import org.w3c.dom.Text;
@@ -37,6 +35,8 @@ public class AddActivity extends AppCompatActivity {
 
     DatePickerDialog datePickerDialog;
     Button button;
+    //Declaration SqliteHelper
+    SqliteHelper sqliteHelper;
 
     private static final String TAG = "AddActivity";
 
@@ -44,31 +44,14 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addactivity);
+        sqliteHelper = new SqliteHelper(this);
         //  initiate the edit text
         et1 = (EditText) findViewById(R.id.et1);
         time = (EditText) findViewById(R.id.time);
         date = (EditText) findViewById(R.id.date);
         button=(Button)findViewById(R.id.btnadd);
+        txt=(TextView)findViewById(R.id.txt);
         spinner=(Spinner)findViewById(R.id.spinner);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-
-        //placing toolbar in place of actionbar
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),FaqjaKryesore.class));
-                finish();
-            }
-        });
-
-
-
 
         // perform click event on edit text
 
@@ -116,9 +99,7 @@ public class AddActivity extends AppCompatActivity {
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
 
-
             }
-
 
         });
 
@@ -126,29 +107,24 @@ public class AddActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                    String Date = date.getText().toString();
+                    String Activity = et1.getText().toString();
+                    String Time = time.getText().toString();
+
+                    sqliteHelper.addActivity(new activitiesAdd(null, "test", Activity, Date, Time, "0"));
 
 
-                String today = "30/5/2018";
-
-                et1=(EditText)findViewById(R.id.et1);
-                date = (EditText) findViewById(R.id.date);
-                time = (EditText) findViewById(R.id.time);
-                spinner = (Spinner) findViewById(R.id.spinner);
-                txt=(TextView)findViewById(R.id.txt);
-                String date1=date.toString();
-                Intent intent = new Intent(AddActivity.this, ViewActivity.class);
+                    Intent i= new Intent(AddActivity.this, ViewActivity.class);
+                    startActivity(i);
 
 
-                    intent.putExtra("Activity type",txt.getText().toString());
-                    intent.putExtra("Activity", et1.getText().toString());
-                    intent.putExtra("Time", time.getText().toString());
-                    intent.putExtra("Date", date.getText().toString());
 
 
-                startActivity(intent);
 
             }
         });
+
+
 
         ArrayList<ItemData> list=new ArrayList<>();
         list.add(new ItemData("Select activity type:",R.mipmap.add));
@@ -162,50 +138,6 @@ public class AddActivity extends AppCompatActivity {
         sp.setAdapter(adapter);
 
 
-
-
-
-
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        final Intent intent;
-        switch(item.getItemId()){
-
-            case R.id.motivation:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.menuAbout:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menuSettings:
-                Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.menuLogout:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-
-
-                break;
-
-        }
-        return true;
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-
-
 
 }

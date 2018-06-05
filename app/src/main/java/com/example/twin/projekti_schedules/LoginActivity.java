@@ -3,7 +3,6 @@ package com.example.twin.projekti_schedules;
 /**
  * Created by Edisa on 5/24/2018.
  */
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -28,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //Declaration Button
     Button buttonLogin;
-    Button forgotPass;
 
     //Declaration SqliteHelper
     SqliteHelper sqliteHelper;
@@ -43,17 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
-        //set click event of forgot password button
-        forgotPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent ii=new Intent(LoginActivity.this, forgotPassword.class);
-                startActivity(ii);
-
-            }
-        });
-
+        //session class instance
 
         //set click event of login button
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +60,9 @@ public class LoginActivity extends AppCompatActivity {
 
                     //Check Authentication is successful or not
                     if (currentUser != null) {
-                       Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+                        Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
+
+                       Intent intent=new Intent(LoginActivity.this,FaqjaKryesore.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -86,14 +76,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     //this method used to set Create account TextView text and click event( maltipal colors
     // for TextView yet not supported in Xml so i have done it programmatically)
     private void initCreateAccountTextView() {
         TextView textViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
-        textViewCreateAccount.setText(fromHtml("<font color='#000000'>I don't have account yet. </font><font color='#000000'>create one</font>"));
+        textViewCreateAccount.setText(fromHtml("<font color='#ffffff'>I don't have account yet. </font><font color='#0c0099'>create one</font>"));
         textViewCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
