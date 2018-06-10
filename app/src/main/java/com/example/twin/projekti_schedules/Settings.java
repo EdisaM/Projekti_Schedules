@@ -1,52 +1,29 @@
 package com.example.twin.projekti_schedules;
 
-import android.app.Activity;
 import android.app.SearchManager;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
-import android.widget.TextView;
 import android.view.View;
-import android.view.LayoutInflater;
-import android.app.AlertDialog;
-import android.content.ClipData.Item;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+public class Settings extends AppCompatActivity {
 
 
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class FaqjaKryesore extends AppCompatActivity {
-
-    private List<Aktiviteti> activities;
-    private Context context;
-    private RecyclerView rv;
     private Menu menu;
     private Toolbar toolbar;
     private MenuInflater menuInflater;
-
-
 
 
     @Override
@@ -54,13 +31,7 @@ public class FaqjaKryesore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-
-
-        setContentView(R.layout.faqjakryesore);
-
-
-
-
+        setContentView(R.layout.settings);
 
 
         //getting the toolbar
@@ -70,31 +41,34 @@ public class FaqjaKryesore extends AppCompatActivity {
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
 
-        rv=(RecyclerView)findViewById(R.id.rv);
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);
-        rv.setHasFixedSize(true);
-
-        initializeData();
-        initializeAdapter();
+        TextView txt1 = (TextView) findViewById(R.id.changepwd);
+        TextView txt2 = (TextView) findViewById(R.id.delacc);
 
 
+        txt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    }
+                Intent intent = new Intent(Settings.this, ChangePassword.class);
+                startActivity(intent);
+            }
 
 
+        });
 
-    private void initializeData(){
-        activities = new ArrayList<>();
-        activities.add(new Aktiviteti("Today's schedule", R.mipmap.schedule));
-        activities.add(new Aktiviteti("Add activity", R.mipmap.add));
+        txt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    }
+                Intent intent = new Intent(Settings.this, DeleteAccount.class);
+                startActivity(intent);
+            }
 
-    private void initializeAdapter(){
-        RVAdapter adapter = new RVAdapter(activities);
-        rv.setAdapter(adapter);
+
+        });
+
+
     }
 
     @Override
@@ -115,16 +89,14 @@ public class FaqjaKryesore extends AppCompatActivity {
                 startActivity(intent);
                 break;
 
+
             case R.id.menuLogout:
-                PreferenceUtils.savePassword(null, this);
-                PreferenceUtils.saveEmail(null, this);
-                Intent intent1 = new Intent(this, LoginActivity.class);
-                startActivity(intent1);
-                finish();
-                return true;
+
+                intent =  new Intent(this, LoginActivity.class);
+                startActivity(intent);
 
 
-
+                break;
 
         }
         return true;
@@ -140,9 +112,4 @@ public class FaqjaKryesore extends AppCompatActivity {
 
 
 
-
-
 }
-
-
-

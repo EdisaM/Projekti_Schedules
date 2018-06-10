@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.twin.projekti_schedules">
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="16" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".FaqjaKryesore"
+            android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +35,12 @@
         <activity android:name=".ViewActivity"/>"
         <activity android:name=".motivation"></activity>
         <activity android:name=".FaqjaKryesore"></activity>
+        <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".DeleteAccount"></activity>
+        <activity android:name=".Settings"></activity>
+        <activity android:name=".ConfirmPassword"></activity>
+
+        <receiver android:name=".AlarmReceiver"/>
 
     </application>
 

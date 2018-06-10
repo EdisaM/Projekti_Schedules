@@ -21,7 +21,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 // Set the alarm here.
                 Log.d(TAG, "onReceive: BOOT_COMPLETED");
                 LocalData localData = new LocalData(context);
-                NotificationScheduler.setReminder(context, AlarmReceiver.class, localData.get_hour(), localData.get_min());
+                NotificationScheduler.setReminder(context, AlarmReceiver.class, localData.get_hour(), localData.get_min(),localData.get_day(),localData.get_month(),localData.get_year());
                 return;
             }
         }
@@ -29,8 +29,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         Log.d(TAG, "onReceive: ");
 
         //Trigger the notification
-        NotificationScheduler.showNotification(context, MainActivity.class,
-                "You have 5 unwatched videos", "Watch them now?");
+        NotificationScheduler.showNotification(context, AddActivity.class,
+                "You have to finish a task.", "Have a look at your schedule!");
 
     }
 }

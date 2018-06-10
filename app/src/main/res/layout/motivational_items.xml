@@ -16,7 +16,7 @@
         android:layout_marginTop="25dp"
         android:paddingRight="50dp"
         android:text="MultiAutoCompleteTextView"
-
+         android:textColor="#848378"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -29,6 +29,7 @@
         android:layout_below="@+id/txtQuote"
         android:layout_marginBottom="9dp"
         android:layout_marginLeft="16dp"
+        android:textColor="#848378"
         android:layout_marginTop="9dp"
         android:text="TextView" />
 </RelativeLayout>

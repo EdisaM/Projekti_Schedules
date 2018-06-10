@@ -23,18 +23,22 @@ import static com.example.twin.projekti_schedules.R.layout.listselector;
 
 // List view:(views)
 public class motivation extends AppCompatActivity {
-    private List<quotes> myQuotes= new ArrayList<quotes>();
+    public static ArrayList<quotes> myQuotes= new ArrayList<quotes>();
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_motivation);
 
+
         populateQuotesView();
         populateListView();
+        getCount();
     }
 
-    private void populateQuotesView(){
+
+    public void populateQuotesView(){
         myQuotes.add(new quotes("“Amateurs sit and wait for inspiration, the rest of us just get up and go to work.”","― Stephen King, On Writing: A Memoir of the Craft"));
         myQuotes.add(new quotes("“If you spend too much time thinking about a thing, you'll never get it done.” ","― Bruce Lee"));
         myQuotes.add(new quotes("“Whenever you are asked if you can do a job, tell 'em, 'Certainly I can!' Then get busy and find out how to do it.”  ","― Theodore Roosevelt"));
@@ -67,14 +71,16 @@ public class motivation extends AppCompatActivity {
         myQuotes.add(new quotes("“Limitations live only in our minds. But if we use our imaginations, our possibilities become limitless. ”","― Jamie Paolinetti"));
         myQuotes.add(new quotes("“Everything you’ve ever wanted is on the other side of fear.”","― George Addair"));
 
-
     }
-    private void populateListView() {
+    public void populateListView() {
         ArrayAdapter<quotes> adapter=new MyListAdapter();
         ListView list=(ListView)findViewById(R.id.quotesListView);
         list.setAdapter(adapter);
     }
-    private class MyListAdapter extends ArrayAdapter<quotes>{
+
+
+
+    public class MyListAdapter extends ArrayAdapter<quotes>{
 
         public MyListAdapter() {
             super(motivation.this, R.layout.motivational_items, myQuotes);
@@ -105,6 +111,19 @@ public class motivation extends AppCompatActivity {
 
         }
 
+
+    }
+
+
+    public static ArrayList getArrayList()
+    {
+        return myQuotes;
+    }
+
+    public int getCount() {
+        return myQuotes.size();
     }
 
 }
+
+

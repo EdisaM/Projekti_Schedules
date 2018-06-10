@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
     <item
         android:id="@+id/motivation"
+        android:icon="@android:drawable/btn_star"
         android:title="Motivation"
-        app:showAsAction="always"
-        android:icon="@android:drawable/btn_star_big_on"/>
+        app:showAsAction="always" />
     <item
         android:id="@+id/menuAbout"
         android:title="About" />
@@ -16,6 +15,7 @@
     <item
         android:id="@+id/menuSettings"
         android:title="Settings" />
+
 
     <item
         android:id="@+id/menuLogout"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
+    android:background="@mipmap/mountain"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
 
-        android:background="@color/colorAccent"
+        android:background="#8bf9a050"
         android:gravity="fill_vertical"
         android:orientation="vertical">
 
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
+            android:background="#f7b527"
             android:text="Login"
             android:textColor="@color/colorText" />
 

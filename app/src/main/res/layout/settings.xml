@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/border"
+    >
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:title="BeProductive"
+        app:titleMarginStart="60dp"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/colorPrimary" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/border"
+        android:id="@+id/changepwd"
+        android:text="Change password"
+        android:textSize="20dp"
+        android:textColor="@android:color/darker_gray"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/delacc"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/changepwd"
+        android:background="@drawable/border"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="Delete account"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="86dp"
+        app:srcCompat="@drawable/lock" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="162dp"
+        app:srcCompat="@drawable/x" />
+
+</RelativeLayout>

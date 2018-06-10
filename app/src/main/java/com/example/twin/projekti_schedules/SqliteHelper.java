@@ -191,4 +191,73 @@ public class SqliteHelper extends SQLiteOpenHelper {
         //if email does not exist return false
         return false;
     }
+
+    public void update_user (String oldPassword , String newPassword )
+    {
+        this.getWritableDatabase().execSQL("UPDATE " +TABLE_USERS+" SET "+KEY_PASSWORD+"='"+newPassword+"' WHERE "+KEY_PASSWORD+"='"+oldPassword+"'" );
+    }
+    public void delete_user (String password,String email)
+    {
+        this.getWritableDatabase().execSQL("DELETE "+"*"+" FROM " +TABLE_USERS+" WHERE "+KEY_PASSWORD+"='"+password+"' AND "+KEY_EMAIL+"='"+email+"'" );
+    }
+
+    public boolean checkUser(String email){
+        String[] columns = {
+                KEY_ID
+        };
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = KEY_EMAIL + " = ?";
+        String[] selectionArgs = { email };
+
+        Cursor cursor = db.query(TABLE_USERS,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public void updatePassword(String email, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_PASSWORD, password);
+        db.update(TABLE_USERS, values, KEY_EMAIL+" = ?",new String[] { email });
+        db.close();
+    }
+
+
+    public boolean checkUser(String email, String password){
+        String[] columns = {
+                KEY_ID
+        };
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = KEY_EMAIL + " = ?" + " AND " +KEY_PASSWORD + " =?";
+        String[] selectionArgs = { email, password };
+
+        Cursor cursor = db.query(TABLE_USERS,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0){
+            return true;
+        }
+        return false;
+    }
+
 }
