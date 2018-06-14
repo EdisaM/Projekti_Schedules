@@ -18,6 +18,9 @@ import android.app.DatePickerDialog;
 import android.view.MenuInflater;
 import android.widget.Toast;
 import android.app.AlarmManager;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import android.widget.Spinner;
@@ -31,6 +34,7 @@ import android.support.v7.widget.Toolbar;
 import org.w3c.dom.Text;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -91,7 +95,7 @@ public class AddActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),FaqjaKryesore.class));
+                startActivity(new Intent(getApplicationContext(),MenuActivity.class));
                 finish();
             }
         });
@@ -113,6 +117,8 @@ public class AddActivity extends AppCompatActivity {
                         localData.set_min(selectedMinute);
 
                         time.setText(selectedHour + ":" + selectedMinute);
+
+                        NotificationScheduler.setReminder(AddActivity.this, AlarmReceiver.class, localData.get_hour(), localData.get_min());
                         }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -158,6 +164,7 @@ public class AddActivity extends AppCompatActivity {
         int selectedYear=localData.get_year();
 
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,14 +174,25 @@ public class AddActivity extends AppCompatActivity {
 
                     sqliteHelper.addActivity(new activitiesAdd(null, "test", Activity, Date, Time, "0"));
 
-                NotificationScheduler.setReminder(AddActivity.this, AlarmReceiver.class, localData.get_hour(), localData.get_min(),localData.get_day(),localData.get_month(),localData.get_year());
+                NotificationScheduler.setReminder(AddActivity.this, AlarmReceiver.class, localData.get_hour(), localData.get_min());
+
+                //String dt;
+                Date cal = (Date) Calendar.getInstance().getTime();
+                //dt = cal.toString();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+                String date1 = sdf.format(new Date());
+                String today=date1.toString();
 
 
-                    Intent i= new Intent(AddActivity.this, ViewActivity.class);
+                //DateFormat sdf1 = new SimpleDateFormat("dd/M/yyyy");
+                //String dateInString = date.getText().toString();
+                //Date date2 = sdf1.parse(dateInString);
+                //if(cal==date2) {
+                    Intent i = new Intent(AddActivity.this, ViewActivity.class);
                     startActivity(i);
 
 
-
+                //}
 
 
             }
@@ -195,42 +213,7 @@ public class AddActivity extends AppCompatActivity {
 
 
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        final Intent intent;
-        switch(item.getItemId()){
 
-            case R.id.motivation:
-                intent =  new Intent(this, motivation.class);
-                startActivity(intent);
-                break;
-            case R.id.menuAbout:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menuSettings:
-                Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.menuLogout:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-
-
-                break;
-
-        }
-        return true;
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
-        return true;
-    }
 
 
 }

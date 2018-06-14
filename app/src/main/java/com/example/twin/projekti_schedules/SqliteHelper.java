@@ -198,7 +198,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     }
     public void delete_user (String password,String email)
     {
-        this.getWritableDatabase().execSQL("DELETE "+"*"+" FROM " +TABLE_USERS+" WHERE "+KEY_PASSWORD+"='"+password+"' AND "+KEY_EMAIL+"='"+email+"'" );
+        this.getWritableDatabase().execSQL("DELETE FROM " +TABLE_USERS+" WHERE "+KEY_PASSWORD+"='"+password+"' AND "+KEY_EMAIL+"='"+email+"'" );
     }
 
     public boolean checkUser(String email){

@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center_vertical"
-        android:background="#f9e28e"
+        android:background="#79d9cc85"
         android:gravity="fill_vertical"
         android:orientation="vertical">
 

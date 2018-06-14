@@ -46,7 +46,7 @@ public class ViewActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),FaqjaKryesore.class));
+                startActivity(new Intent(getApplicationContext(),MenuActivity.class));
                 finish();
             }
         });
@@ -82,40 +82,4 @@ public class ViewActivity extends AppCompatActivity {
 
 
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        final Intent intent;
-        switch(item.getItemId()){
-
-            case R.id.motivation:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.menuAbout:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menuSettings:
-                Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.menuLogout:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-
-
-                break;
-
-        }
-        return true;
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
-        return true;
-    }}
+}

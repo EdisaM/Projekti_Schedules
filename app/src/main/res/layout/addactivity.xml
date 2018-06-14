@@ -71,16 +71,6 @@
         android:textStyle="bold" />
 
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp"
-        android:layout_below="@+id/date"
-        android:text="Set alarm"
-        android:textColor="@color/colorAccent" />
-
     <Button
         android:id="@+id/btnadd"
         android:layout_width="311dp"

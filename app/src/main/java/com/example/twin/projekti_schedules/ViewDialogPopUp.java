@@ -26,8 +26,7 @@ public class ViewDialogPopUp {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent=new Intent(this,FaqjaKryesore.class);
-                startActivity();
+
 
             }
         });

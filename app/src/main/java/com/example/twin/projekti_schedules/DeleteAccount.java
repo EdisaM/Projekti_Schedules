@@ -1,10 +1,13 @@
 package com.example.twin.projekti_schedules;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +39,35 @@ public class DeleteAccount extends AppCompatActivity {
         //final String name=intent2.getStringExtra("name");
         //Log.e("p",name);
 
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        //placing toolbar in place of actionbar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Settings.class));
+                finish();
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
         emailEdit = (EditText)findViewById(R.id.editText1);
         pwdEdit = (EditText)findViewById(R.id.editText2);
 
@@ -66,12 +98,46 @@ public class DeleteAccount extends AppCompatActivity {
 
                 else{
 
-                    deleteacc = new
-                            SqliteHelper(getApplicationContext());
 
-                    deleteacc.delete_user(pwdS,emailS);
+                    AlertDialog alertDialog = new AlertDialog.Builder(
+                            DeleteAccount.this).create();
 
-                   // startActivity(intent);
+                    // Setting Dialog Title
+                    alertDialog.setTitle("Change password alert");
+
+                    // Setting Dialog Message
+                    alertDialog.setMessage("Are you sure to change your password?");
+
+                    // Setting Icon to Dialog
+                    alertDialog.setIcon(R.drawable.selected);
+
+                    // Setting OK Button
+                    alertDialog.setButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteacc = new
+                                    SqliteHelper(getApplicationContext());
+
+                            deleteacc.delete_user(pwdS,emailS);
+
+                            // startActivity(intent);
+                            PreferenceUtils.savePassword(null, DeleteAccount.this);
+                            PreferenceUtils.saveEmail(null, DeleteAccount.this);
+                            Intent intent1 = new Intent(DeleteAccount.this, LoginActivity.class);
+                            startActivity(intent1);
+                            finish();
+
+
+                        }
+                    });
+                    alertDialog.setButton("No",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(getApplicationContext(),DeleteAccount.class));
+
+                        }});
+
+                    // Showing Alert Message
+                    alertDialog.show();
+
 
 
                 }
