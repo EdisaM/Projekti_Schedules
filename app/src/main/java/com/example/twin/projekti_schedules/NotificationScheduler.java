@@ -93,7 +93,7 @@ public class NotificationScheduler
     }
 
 
-    public static void setReminder(Context context,Class<?> cls,int hour, int min)
+    public static void setReminder(Context context,Class<?> cls,int hour, int min,int day,int month,int year)
     {
         Calendar calendar = Calendar.getInstance();
 
@@ -101,9 +101,9 @@ public class NotificationScheduler
         setcalendar.set(Calendar.HOUR_OF_DAY, hour);
         setcalendar.set(Calendar.MINUTE, min);
         setcalendar.set(Calendar.SECOND, 0);
-        //setcalendar.set(Calendar.DAY_OF_MONTH,day);
-        //setcalendar.set(Calendar.MONTH,month);
-        //setcalendar.set(Calendar.YEAR,year);
+        setcalendar.set(Calendar.DAY_OF_MONTH,day);
+        setcalendar.set(Calendar.MONTH,month);
+        setcalendar.set(Calendar.YEAR,year);
 
         // cancel already scheduled reminders
         cancelReminder(context,cls);

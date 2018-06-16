@@ -209,6 +209,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             sqliteHelper.addActivities(addActivityvalues);
 
+
             // Snack Bar to show success message that record saved successfully
             Intent intent_view = new Intent(this, ViewActivity.class);
             Toast.makeText(this, "Activity added successfully!", Toast.LENGTH_SHORT)
@@ -224,42 +225,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        final Intent intent;
-        switch(item.getItemId()){
-
-            case R.id.motivation:
-                intent =  new Intent(this, motivation.class);
-                startActivity(intent);
-                break;
-            case R.id.menuAbout:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menuSettings:
-                Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.menuLogout:
-                intent =  new Intent(this, MainActivity.class);
-                startActivity(intent);
 
 
-                break;
-
-        }
-        return true;
-    }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
-        return true;
-    }
 
 
     @Override

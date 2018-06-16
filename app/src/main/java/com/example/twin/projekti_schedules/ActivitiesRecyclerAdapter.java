@@ -47,6 +47,7 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
         public CheckBox checkStatus;
 
 
+
         public ActivityViewHolder(View view) {
             super(view);
             textViewActivity = (AppCompatTextView) view.findViewById(R.id.textViewActivity);
@@ -54,6 +55,7 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
             textViewDate = (AppCompatTextView) view.findViewById(R.id.textViewDate);
             textViewTime = (AppCompatTextView) view.findViewById(R.id.textViewTime);
             checkStatus=(CheckBox)view.findViewById(R.id.checkStatus);
+
 
 
         }
