@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.provider.CalendarContract.CalendarCache.URI;
 
 public class MainActivity extends AppCompatActivity {
     //Declaration EditTexts
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Declaration SqliteHelper
     SqliteHelper sqliteHelper;
+    String email;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //Email does not exist now add new user to database
                         sqliteHelper.addUser(new User(null, UserName, Email, Password));
+                        sendEmail();
                         Snackbar.make(buttonRegister, "User created successfully! Please Login ", Snackbar.LENGTH_LONG).show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -92,6 +97,48 @@ public class MainActivity extends AppCompatActivity {
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
     }
+
+
+
+
+
+
+
+
+
+    public void sendEmail()
+    {
+        try
+        {
+            email=editTextEmail.getText().toString();
+            final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+            emailIntent.setType("plain/text");
+            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] { email });
+
+            if (URI != null) {
+                emailIntent.putExtra(Intent.EXTRA_STREAM, URI);
+            }
+            emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Miresevini ne aplikacionin tone");
+            this.startActivity(Intent.createChooser(emailIntent,"Sending email..."));
+        }
+        catch (Throwable t)
+        {
+            Toast.makeText(this, "Request failed try again: " + t.toString(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //This method is used to validate input given by user
     public boolean validate() {

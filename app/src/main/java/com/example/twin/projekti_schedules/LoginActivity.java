@@ -3,6 +3,7 @@ package com.example.twin.projekti_schedules;
 /**
  * Created by Edisa on 5/24/2018.
  */
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -14,12 +15,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class LoginActivity extends AppCompatActivity {
 
     //Declaration EditTexts
     EditText editTextEmail;
     EditText editTextPassword;
+    TextView forgotpass;
 
     //Declaration TextInputLayout
     TextInputLayout textInputLayoutEmail;
@@ -31,13 +37,35 @@ public class LoginActivity extends AppCompatActivity {
     //Declaration SqliteHelper
     SqliteHelper sqliteHelper;
 
+
+
+    //public static final String MyPREFERENCES = "MyPrefs" ;
+    //SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        forgotpass=(TextView)findViewById(R.id.forgotPass);
+
         sqliteHelper = new SqliteHelper(this);
         initCreateAccountTextView();
         initViews();
+
+        //sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+
+        forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(LoginActivity.this, forgotPassword.class);
+                startActivity(intent);
+            }
+
+
+        });
 
 
 
@@ -58,19 +86,26 @@ public class LoginActivity extends AppCompatActivity {
                     //Authenticate user
                     User currentUser = sqliteHelper.Authenticate(new User(null, null, Email, Password));
 
+
                     //Check Authentication is successful or not
                     if (currentUser != null) {
                         Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
+                        //SharedPreferences.Editor editor = sharedpreferences.edit();
 
                        Intent intent=new Intent(LoginActivity.this,FaqjaKryesore.class);
                         startActivity(intent);
+                        emptyInputEditText();
                         finish();
+
+
                     } else {
 
                         //User Logged in Failed
                         Snackbar.make(buttonLogin, "Failed to log in , please try again", Snackbar.LENGTH_LONG).show();
 
                     }
+
+
                 }
             }
         });
@@ -99,6 +134,14 @@ public class LoginActivity extends AppCompatActivity {
         textInputLayoutEmail = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        PreferenceUtils utils = new PreferenceUtils();
+
+        if (utils.getEmail(this) != null ){
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+            startActivity(intent);
+        }else{
+
+        }
 
     }
 
@@ -144,9 +187,33 @@ public class LoginActivity extends AppCompatActivity {
                 textInputLayoutPassword.setError("Password is to short!");
             }
         }
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+
+        if (sqliteHelper.checkUser(email, password)) {
+            PreferenceUtils.saveEmail(email, this);
+            PreferenceUtils.savePassword(password, this);
+            //Intent accountsIntent = new Intent(this, FaqjaKryesore.class);
+            //accountsIntent.putExtra("EMAIL", editTextEmail.getText().toString().trim());
+            //emptyInputEditText();
+            //startActivity(accountsIntent);
+            //finish();
+        } else {
+            //Snackbar.make(nestedScrollView, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show();
+        }
 
         return valid;
     }
+
+    private void emptyInputEditText(){
+        editTextEmail.setText(null);
+        editTextPassword.setText(null);
+    }
+
+
+
+
+
 
 
 }
