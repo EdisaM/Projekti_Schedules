@@ -209,7 +209,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             sqliteHelper.addActivities(addActivityvalues);
 
-
             // Snack Bar to show success message that record saved successfully
             Intent intent_view = new Intent(this, ViewActivity.class);
             Toast.makeText(this, "Activity added successfully!", Toast.LENGTH_SHORT)
@@ -219,13 +218,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
 
         }
-
-
-
-
-
-
-
 
 
 
