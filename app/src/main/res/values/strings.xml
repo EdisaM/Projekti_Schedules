@@ -1,11 +1,16 @@
 <resources>
+    <string-array name="choices">
+        <item>All</item>
+        <item>Today</item>
+        <item>This month</item>
+    </string-array>
+
     <string name="app_name">Projekti_Schedules</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_faqekryesore1">faqekryesore1</string>
     <string name="title_activity_home">Settings</string>
 
-    <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>

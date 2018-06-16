@@ -21,14 +21,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" />
-
         <activity android:name=".forgotPassword" />
         <activity android:name=".profileUI" />
-        <activity android:name=".AddActivity"/>
-        <activity android:name=".ViewActivity"/>"
-        <activity android:name=".motivation"></activity>
-        <activity android:name=".FaqjaKryesore"></activity>
-
+        <activity android:name=".AddActivity" />
+        "
+        <activity android:name=".motivation" />
+        <activity android:name=".FaqjaKryesore" />
+        <activity android:name=".ViewActivity"></activity>
     </application>
 
 </manifest>

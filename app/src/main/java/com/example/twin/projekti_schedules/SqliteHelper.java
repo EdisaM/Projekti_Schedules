@@ -1,5 +1,4 @@
 package com.example.twin.projekti_schedules;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,8 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Edisa on 5/24/2018.
@@ -17,10 +18,10 @@ import java.util.Date;
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
-    public static final String DATABASE_NAME = "register1.db";
+    public static final String DATABASE_NAME = "registerdata2.db";
 
     //DATABASE VERSION
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     //TABLE NAME USERS
     public static final String TABLE_USERS = "users";
@@ -70,7 +71,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
             + " ) ";
     public static final String SQL_TABLE_ACTIVITY = " CREATE TABLE " + TABLE_ACTIVITY
             + " ( "
-            + KEY_ID_ACTIVITY + " INTEGER PRIMARY KEY, "
+            + KEY_ID_ACTIVITY + " INTEGER PRIMARY KEY,"
             + KEY_ACTIVITY_TYPE + " TEXT, "
             + KEY_ACTIVITY + " TEXT, "
             + KEY_DATE + " TEXT, "
@@ -121,37 +122,6 @@ public class SqliteHelper extends SQLiteOpenHelper {
         long todo_id = db.insert(TABLE_USERS, null, values);
     }
 
-    public void addActivity(activitiesAdd A){
-        //get writable database
-        SQLiteDatabase database = this.getWritableDatabase();
-
-        //create content values to insert
-        ContentValues value = new ContentValues();
-
-        //Put activity type in  @values
-        value.put(KEY_ACTIVITY_TYPE, A.activityType);
-
-        //Put activity in  @values
-        value.put(KEY_ACTIVITY, A.activity);
-
-        //Put date in  @values
-        value.put(KEY_DATE, A.date);
-        //put time in @values
-        value.put(KEY_TIME, A.time);
-        //put status in @values
-        value.put(KEY_STATUS, A.status);
-
-        // insert row
-        long id = database.insert(TABLE_ACTIVITY, null, value);
-
-    }
-    public Cursor getActivities(){
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd/M/yyyy");
-        String formattedDate = df.format(c);
-        SQLiteDatabase db=getReadableDatabase();
-        return db.query(TABLE_ACTIVITY,  new String[] { "activityType, activity, date, time" }, KEY_DATE + "=" + "'"+formattedDate+"'", null, null, null, null);
-    }
 
     public User Authenticate(User user) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -191,4 +161,269 @@ public class SqliteHelper extends SQLiteOpenHelper {
         //if email does not exist return false
         return false;
     }
+
+    public void update_user (String oldPassword , String newPassword )
+    {
+        this.getWritableDatabase().execSQL("UPDATE " +TABLE_USERS+" SET "+KEY_PASSWORD+"='"+newPassword+"' WHERE "+KEY_PASSWORD+"='"+oldPassword+"'" );
+    }
+
+    public void updateActivities(Integer position, String status){
+        this.getWritableDatabase().execSQL("UPDATE " +TABLE_ACTIVITY+" SET "+KEY_STATUS+"='"+status+"' WHERE "+KEY_ID_ACTIVITY+"='"+position+"'" );
+    }
+    public void delete_user (String password,String email)
+    {
+        this.getWritableDatabase().execSQL("DELETE "+"*"+" FROM " +TABLE_USERS+" WHERE "+KEY_PASSWORD+"='"+password+"' AND "+KEY_EMAIL+"='"+email+"'" );
+    }
+
+    public boolean checkUser(String email){
+        String[] columns = {
+                KEY_ID
+        };
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = KEY_EMAIL + " = ?";
+        String[] selectionArgs = { email };
+
+        Cursor cursor = db.query(TABLE_USERS,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public void updatePassword(String email, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_PASSWORD, password);
+        db.update(TABLE_USERS, values, KEY_EMAIL+" = ?",new String[] { email });
+        db.close();
+    }
+
+
+    public boolean checkUser(String email, String password){
+        String[] columns = {
+                KEY_ID
+        };
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = KEY_EMAIL + " = ?" + " AND " +KEY_PASSWORD + " =?";
+        String[] selectionArgs = { email, password };
+
+        Cursor cursor = db.query(TABLE_USERS,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0){
+            return true;
+        }
+        return false;
+    }
+
+    //ALL METHODS FOR ACTIVITIY HANDLING
+
+    public void addActivities(AddActivity_values addActivityvalues) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ACTIVITY_TYPE, addActivityvalues.getActivityType());
+        values.put(KEY_ACTIVITY, addActivityvalues.getActivity());
+        values.put(KEY_DATE, addActivityvalues.getDate());
+        values.put(KEY_TIME, addActivityvalues.getTime());
+        values.put(KEY_STATUS, addActivityvalues.getStatus());
+
+        db.insert(TABLE_ACTIVITY, null, values);
+        db.close();
+    }
+
+
+    public int CountActivities(String query){
+        String[] columns = {
+                KEY_ACTIVITY_TYPE,
+                KEY_ACTIVITY,
+                KEY_DATE,
+                KEY_TIME,
+                KEY_STATUS
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
+                columns,    //columns to return
+                KEY_DATE+" = ?",
+                new String[] {query},
+                null,
+                null,
+                null);
+
+        int count=cursor.getCount();
+        return count;
+
+    }
+
+    public List<AddActivity_values> getAllActivities() {
+        // array of columns to fetch
+        String[] columns = {
+                KEY_ACTIVITY_TYPE,
+                KEY_ACTIVITY,
+                KEY_DATE,
+                KEY_TIME,
+                KEY_STATUS
+        };
+        // sorting orders
+        List<AddActivity_values> addActivityvaluesList = new ArrayList<AddActivity_values>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+
+        Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+               KEY_DATE); //The sort order
+
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                AddActivity_values addActivityvalues = new AddActivity_values();
+                addActivityvalues.setActivityType(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY_TYPE)));
+                addActivityvalues.setActivity(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY)));
+                addActivityvalues.setDate(cursor.getString(cursor.getColumnIndex(KEY_DATE)));
+                addActivityvalues.setTime(cursor.getString(cursor.getColumnIndex(KEY_TIME)));
+                // Adding user record to list
+                addActivityvaluesList.add(addActivityvalues);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user list
+        return addActivityvaluesList;
+    }
+
+    public List<AddActivity_values> getFilteredActivities(String filter) {
+        // array of columns to fetch
+        String[] columns = {
+                KEY_ACTIVITY_TYPE,
+                KEY_ACTIVITY,
+                KEY_DATE,
+                KEY_TIME,
+                KEY_STATUS
+        };
+        // sorting orders
+        List<AddActivity_values> addActivityvaluesList = new ArrayList<AddActivity_values>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+
+        Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
+                columns,    //columns to return
+                KEY_DATE+" = ?",
+                new String[] {filter},
+                null,
+                null,
+                null);
+
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                AddActivity_values addActivityvalues = new AddActivity_values();
+                addActivityvalues.setActivityType(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY_TYPE)));
+                addActivityvalues.setActivity(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY)));
+                addActivityvalues.setDate(cursor.getString(cursor.getColumnIndex(KEY_DATE)));
+                addActivityvalues.setTime(cursor.getString(cursor.getColumnIndex(KEY_TIME)));
+                // Adding user record to list
+                addActivityvaluesList.add(addActivityvalues);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user list
+        return addActivityvaluesList;
+    }
+
+    public List<AddActivity_values> getFilteredActivitiesByMonth(String filter) {
+        // array of columns to fetch
+        String[] columns = {
+                KEY_ACTIVITY_TYPE,
+                KEY_ACTIVITY,
+                KEY_DATE,
+                KEY_TIME,
+                KEY_STATUS
+        };
+        // sorting orders
+        List<AddActivity_values> addActivityvaluesList = new ArrayList<AddActivity_values>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+
+        Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
+                columns,    //columns to return
+                KEY_DATE+" LIKE ?",
+                new String[] {"%"+filter},
+                null,
+                null,
+                null);
+
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                AddActivity_values addActivityvalues = new AddActivity_values();
+                addActivityvalues.setActivityType(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY_TYPE)));
+                addActivityvalues.setActivity(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY)));
+                addActivityvalues.setDate(cursor.getString(cursor.getColumnIndex(KEY_DATE)));
+                addActivityvalues.setTime(cursor.getString(cursor.getColumnIndex(KEY_TIME)));
+                // Adding user record to list
+                addActivityvaluesList.add(addActivityvalues);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user list
+        return addActivityvaluesList;
+    }
+    public int CountActivitiesByMonth(String query){
+        String[] columns = {
+                KEY_ACTIVITY_TYPE,
+                KEY_ACTIVITY,
+                KEY_DATE,
+                KEY_TIME,
+                KEY_STATUS
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
+                columns,    //columns to return
+                KEY_DATE+" LIKE ?",
+                new String[] {"%"+query},
+                null,
+                null,
+                null);
+
+        int count=cursor.getCount();
+        return count;
+
+    }
+
+
+
+
 }
