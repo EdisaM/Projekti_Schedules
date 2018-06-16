@@ -93,7 +93,7 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
                     listAddActivityvalues.get(position).setSelected(false);
                     listAddActivityvalues.get(position).setStatus("0");
                 } else {
-
+                    listAddActivityvalues.get(position).setStatus("1");
                     listAddActivityvalues.get(position).setSelected(true);
 
 
