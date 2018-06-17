@@ -104,7 +104,8 @@ public class MenuFragment extends Fragment implements View.OnTouchListener {
             @Override
             public void onClick(View view) {
                 fragment=false;
-
+                Intent i=new Intent(getActivity(), StaticticsActivity.class);
+                startActivity(i);
             }
         });
 
