@@ -17,9 +17,7 @@ import java.util.Calendar;
 
 import static android.content.Context.ALARM_SERVICE;
 
-/**
- * Created by Jaison on 20/06/17.
- */
+
 
 public class NotificationScheduler
 {

@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     SqliteHelper sqliteHelper;
 
 
+
     //public static final String MyPREFERENCES = "MyPrefs" ;
     //SharedPreferences sharedpreferences;
 
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        forgotpass = (TextView) findViewById(R.id.forgotPass);
+        forgotpass=(TextView)findViewById(R.id.forgotPass);
 
         sqliteHelper = new SqliteHelper(this);
         initCreateAccountTextView();
@@ -65,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         });
+
 
 
         //session class instance
@@ -90,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                         Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
                         //SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                       Intent intent=new Intent(LoginActivity.this,MenuActivity.class);
                         startActivity(intent);
                         emptyInputEditText();
                         finish();
@@ -99,11 +101,11 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
 
                         //User Logged in Failed
-                        Snackbar.make(buttonLogin, "Failed to log in , please try again", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(buttonLogin, "Failed to log in , please try again.", Snackbar.LENGTH_LONG).show();
 
                     }
 
-
+                    finish();
                 }
             }
         });
@@ -134,10 +136,10 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         PreferenceUtils utils = new PreferenceUtils();
 
-        if (utils.getEmail(this) != null) {
+        if (utils.getEmail(this) != null ){
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
-        } else {
+        }else{
 
         }
 
@@ -203,8 +205,15 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
-    private void emptyInputEditText() {
+    private void emptyInputEditText(){
         editTextEmail.setText(null);
         editTextPassword.setText(null);
     }
+
+
+
+
+
+
+
 }

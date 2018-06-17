@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
     tools:context="com.example.twin.projekti_schedules.ViewActivity">
+    <include layout="@layout/custom_toolbar"></include>
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/gradientbackground">
 
-        <SearchView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:clickable="true"
-            android:queryHint="Search by date" />
+
+        android:id="@+id/linear1"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:background="@android:color/white">
 
         <Spinner
             android:id="@+id/filteractivities"
@@ -30,27 +28,30 @@
             android:layout_marginTop="15dp"
             android:dropDownWidth="match_parent"
             android:spinnerMode="dropdown"
-            android:visibility="visible" />
-        />
+            android:visibility="visible"
+            android:backgroundTint="@color/colorPrimary"
+            />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:queryBackground="@color/colorPrimary"
+            android:queryHint="Search by date" />
 
     </LinearLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewBeneficiary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="2dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical" />
+        android:layout_marginTop="120dp"
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="8"
-        android:background="@color/colorPrimary"
-        android:visibility="visible"
-        app:title="Go back"
-        app:titleTextColor="@android:color/white" />
+        android:background="@android:color/white"
+        android:scrollbars="vertical">
 
-</LinearLayout>
+    </android.support.v7.widget.RecyclerView>
+
+</android.support.design.widget.CoordinatorLayout>
