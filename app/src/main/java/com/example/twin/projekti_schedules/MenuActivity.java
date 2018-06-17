@@ -16,7 +16,7 @@ public class MenuActivity extends FaqjaKryesore {
     public static boolean isFragmentLoaded;
     public static Fragment menuFragment;
     TextView title;
-    public static ImageView menuButton;
+    public ImageView menuButton;
     public static FragmentTransaction fragmentTransaction;
 
 
@@ -25,6 +25,7 @@ public class MenuActivity extends FaqjaKryesore {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initAddlayout(R.layout.menu_activity);
+
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
          isFragmentLoaded=false;
@@ -32,8 +33,7 @@ public class MenuActivity extends FaqjaKryesore {
 
 
         title = (TextView) findViewById(R.id.title_top);
-        menuButton = (ImageView) findViewById(R.id.menu_icon);
-        title.setText("BeProductive");
+        menuButton=(ImageView)findViewById(R.id.menu_icon);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,14 +58,14 @@ public class MenuActivity extends FaqjaKryesore {
         fragmentTransaction.setCustomAnimations(R.anim.slide_down, R.anim.slide_up);
         fragmentTransaction.remove(menuFragment);
         fragmentTransaction.commit();
-        menuButton.setImageResource(R.drawable.menu);
+        menuButton.setImageResource(R.mipmap.menu);
         isFragmentLoaded = false;
 
     }
     public void loadFragment(){
         FragmentManager fm = getSupportFragmentManager();
         menuFragment = fm.findFragmentById(R.id.container);
-        menuButton.setImageResource(R.drawable.menu);
+        menuButton.setImageResource(R.mipmap.menu);
 
         if(menuFragment == null){
             menuFragment = new MenuFragment();

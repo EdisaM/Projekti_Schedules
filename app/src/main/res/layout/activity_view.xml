@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.example.twin.projekti_schedules.ViewActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/gradientbackground">
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:clickable="true"
+            android:queryHint="Search by date" />
 
         <Spinner
             android:id="@+id/filteractivities"
@@ -23,13 +31,7 @@
             android:dropDownWidth="match_parent"
             android:spinnerMode="dropdown"
             android:visibility="visible" />
-
-        <SearchView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:queryHint="Search by date" />
+        />
 
     </LinearLayout>
 
@@ -37,8 +39,18 @@
         android:id="@+id/recyclerViewBeneficiary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/gradient_bg"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
         android:scrollbars="vertical" />
 
-</android.support.design.widget.CoordinatorLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
+        app:title="Go back"
+        app:titleTextColor="@android:color/white" />
+
+</LinearLayout>

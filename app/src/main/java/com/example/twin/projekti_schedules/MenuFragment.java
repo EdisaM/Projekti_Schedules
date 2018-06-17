@@ -78,10 +78,10 @@ public class MenuFragment extends Fragment implements View.OnTouchListener {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent((getActivity()), Settings.class);
+                Intent i = new Intent(getActivity(), Settings.class);
                 startActivity(i);
                 fragment=false;
-                
+
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {

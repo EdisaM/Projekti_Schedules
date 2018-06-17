@@ -147,4 +147,3 @@ public class motivation extends AppCompatActivity {
 
 }
 
-
