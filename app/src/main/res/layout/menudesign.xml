@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:layout_alignParentRight="true"
-    android:orientation="horizontal">
+    android:id="@+id/rootLayout">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="#50000000">
-
-    </LinearLayout>
+        android:background="#50000000"></LinearLayout>
 
     <LinearLayout
         android:layout_width="400dp"
         android:layout_height="match_parent"
 
-        android:background="@drawable/border"
-        android:gravity="right|center_vertical"
+        android:background="#ffffff"
+        android:gravity="right"
 
         android:orientation="vertical"
-        android:weightSum="5">
+        android:weightSum="10"
+        android:layout_marginTop="70dp">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="90dp"
             android:layout_weight="1.5"
             android:orientation="horizontal"
             android:weightSum="2">
 
             <LinearLayout
-                android:id="@+id/task"
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/task"
+                android:id="@+id/task"
+                android:background="#779379"
                 android:orientation="vertical"
                 android:weightSum="3">
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="25dp"
                     android:layout_height="4dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    app:srcCompat="@mipmap/task" />
+                    android:src="@drawable/task" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,28 +61,28 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Tasks"
-                    android:textColor="@color/colorText"
-                    android:textSize="14sp" />
+                    android:textColor="#fff"
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:id="@+id/motication"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
+                android:id="@+id/motication"
                 android:background="@color/colorPrimary"
                 android:orientation="vertical"
                 android:weightSum="3">
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="25dp"
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    app:srcCompat="@mipmap/motication" />
+                    android:src="@drawable/motication" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,37 +91,37 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Motivation"
-                    android:textColor="@color/colorText"
-                    android:textSize="14sp" />
+                    android:textColor="#fff"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="1dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1.5"
             android:orientation="horizontal"
             android:weightSum="2">
 
             <LinearLayout
-                android:id="@+id/statistics"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/statistics"
+                android:background="#ac9dae"
+                android:id="@+id/statistics"
                 android:orientation="vertical"
                 android:weightSum="3">
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="25dp"
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    app:srcCompat="@mipmap/statistics" />
+                    android:src="@drawable/statistics" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -128,28 +130,28 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Statistics"
-                    android:textColor="@color/colorText"
-                    android:textSize="14sp" />
+                    android:textColor="#fff"
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:id="@+id/settings"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:background="@color/settings"
+                android:id="@+id/settings"
+                android:background="#8eb9b9"
                 android:orientation="vertical"
                 android:weightSum="3">
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="25dp"
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    app:srcCompat="@mipmap/setting" />
+                    android:src="@drawable/setting" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,38 +160,37 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Settings"
-                    android:textColor="@color/colorText"
-                    android:textSize="14sp" />
+                    android:textColor="#fff"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="1dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1.5"
             android:orientation="horizontal"
             android:weightSum="2">
 
             <LinearLayout
-                android:id="@+id/help"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/buttonlogin"
+                android:background="@color/colorPrimary"
                 android:orientation="vertical"
+                android:id="@+id/help"
                 android:weightSum="3">
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="25dp"
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    app:srcCompat="@mipmap/help1" />
+                    android:src="@drawable/help1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -198,28 +199,28 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Help"
-                    android:textColor="@color/colorText"
-                    android:textSize="14sp" />
+                    android:textColor="#fff"
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:id="@+id/logout"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:background="@color/logout"
+                android:background="#9092bf"
+                android:id="@+id/logout"
                 android:orientation="vertical"
                 android:weightSum="3">
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="25dp"
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    app:srcCompat="@mipmap/logout1" />
+                    android:src="@drawable/logout1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -228,11 +229,19 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Logout"
-                    android:textColor="@color/colorText"
-                    android:textSize="14sp" />
+                    android:textColor="#fff"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.6">
+
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
+
+

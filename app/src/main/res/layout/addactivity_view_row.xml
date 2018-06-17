@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardV"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
-    card_view:cardBackgroundColor="@color/cardview_light_background"
     card_view:cardCornerRadius="10dp">
-
 
 
     <LinearLayout
@@ -19,6 +18,7 @@
 
 
         <LinearLayout
+            android:id="@+id/l1"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="@drawable/gradient_bg"
@@ -30,8 +30,8 @@
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewActivity"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
                 android:text="Activity"
@@ -43,49 +43,50 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/l2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal"
-            android:background="@android:color/white"
             android:paddingBottom="15dp"
-            android:paddingTop="15dp">
+            android:paddingTop="10dp">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewType"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
                 android:text="ActivityType"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_weight="1"
                 android:text="Date"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewTime"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_weight="1"
                 android:text="Time"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/l3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:background="@android:color/white"
             android:orientation="horizontal">

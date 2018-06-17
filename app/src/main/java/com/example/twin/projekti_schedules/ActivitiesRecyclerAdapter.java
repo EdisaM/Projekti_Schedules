@@ -92,12 +92,12 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
 
 
        if(position%2==0) {
-            holder.cardView.setBackgroundColor(Color.parseColor("#fff176"));
-           holder.l1.setBackgroundColor(Color.parseColor("#fff176"));
+           // holder.cardView.setBackgroundColor(Color.parseColor("#fff176"));
+           holder.l1.setBackgroundColor(Color.parseColor("#AFE7C271"));
         }
         else{
-            holder.cardView.setBackgroundColor(Color.parseColor("#dce775"));
-           holder.l1.setBackgroundColor(Color.parseColor("#dce775"));
+           // holder.cardView.setBackgroundColor(Color.parseColor("#dce775"));
+           holder.l1.setBackgroundColor(Color.parseColor("#AF75BF91"));
         }
 
 

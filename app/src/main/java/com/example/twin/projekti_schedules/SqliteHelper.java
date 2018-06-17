@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.CheckBox;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,6 +58,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
     //status
     public static final String KEY_STATUS="status";
 
+    public static final String KEY_ID_CHECK="idCheck";
+    public static final Integer KEY_CHECK=0;
+    public static final String TABLE_CHECK="check";
 
 
 
@@ -90,6 +94,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_TABLE_USERS);
         sqLiteDatabase.execSQL(SQL_TABLE_ACTIVITY);
 
+
     }
 
     @Override
@@ -97,6 +102,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         //drop table to create new one if database version updated
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ACTIVITY);
+
     }
 
 
@@ -419,6 +425,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return count;
 
     }
+
     
+
 
 }
