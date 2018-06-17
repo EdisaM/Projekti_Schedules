@@ -100,7 +100,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 switch(position)
                 {
                     case 1:
-                    activityType="R.mipmap.health";
+                    activityType="Health";
                             break;
                     case 2:
                         activityType="Education";

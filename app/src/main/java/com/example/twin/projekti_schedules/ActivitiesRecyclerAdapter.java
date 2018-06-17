@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,9 +26,11 @@ import java.util.ArrayList;
  * Created by Edisa on 6/9/2018.
  */
 
-public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRecyclerAdapter.ActivityViewHolder> {
+public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRecyclerAdapter.ActivityViewHolder>{
 
     private ArrayList<AddActivity_values> listAddActivityvalues;
+    private ArrayList<AddActivity_values> listAddActivityvalues1;
+
     private Context mContext;
     private ArrayList<AddActivity_values> mFilteredList;
     SqliteHelper databaseHelper;
@@ -34,8 +38,10 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
 
     public ActivitiesRecyclerAdapter(ArrayList<AddActivity_values> listAddActivityvalues, Context mContext) {
         this.listAddActivityvalues = listAddActivityvalues;
+        this.listAddActivityvalues1 = listAddActivityvalues;
         this.mContext = mContext;
         this.mFilteredList = listAddActivityvalues;
+        this.notifyDataSetChanged();
 
 
     }
@@ -46,11 +52,13 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
         public AppCompatTextView textViewType;
         public AppCompatTextView textViewDate;
         public AppCompatTextView textViewTime;
+        public TextView status;
         public LinearLayout l1;
         public LinearLayout l2;
         public LinearLayout l3;
         public CardView cardView;
         public CheckBox checkStatus;
+        public Button btnUpdate;
 
 
 
@@ -65,6 +73,7 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
             l1=(LinearLayout)view.findViewById(R.id.l1);
             l2=(LinearLayout)view.findViewById(R.id.l2);
             l3=(LinearLayout)view.findViewById(R.id.l3);
+            btnUpdate=(Button)view.findViewById(R.id.btnUpdate);
 
 
 
@@ -87,6 +96,7 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
         return new ActivityViewHolder(itemView);
     }
 
+
     @Override
     public void onBindViewHolder(final ActivityViewHolder holder, final int position) {
 
@@ -105,28 +115,16 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
         holder.textViewType.setText(listAddActivityvalues.get(position).getActivityType());
         holder.textViewDate.setText(listAddActivityvalues.get(position).getDate());
         holder.textViewTime.setText(listAddActivityvalues.get(position).getTime());
-        holder.checkStatus.setChecked(listAddActivityvalues.get(position).isSelected());
-
         holder.checkStatus.setTag(position);
-        holder.checkStatus.setOnClickListener(new View.OnClickListener() {
+        holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Integer position= (Integer)holder.checkStatus.getTag();
-
-
-                if (listAddActivityvalues.get(position).isSelected()) {
-                    listAddActivityvalues.get(position).setSelected(false);
-                    listAddActivityvalues.get(position).setStatus("0");
-                } else {
-                    listAddActivityvalues.get(position).setStatus("1");
-                    listAddActivityvalues.get(position).setSelected(true);
-
-
-
-
-
-
-                }
+                Intent intent=new Intent(view.getContext(),CompletedActivity.class);
+                intent.putExtra("Activity", listAddActivityvalues.get(position).getActivity());
+                intent.putExtra("Type", listAddActivityvalues.get(position).getActivityType());
+                intent.putExtra("Date", listAddActivityvalues.get(position).getDate());
+                intent.putExtra("Time", listAddActivityvalues.get(position).getTime());
+                view.getContext().startActivity(intent);
             }
         });
 

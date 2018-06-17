@@ -210,6 +210,14 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateActivities(String status, String activity, String type, String date, String time){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_STATUS, status);
+        db.update(TABLE_ACTIVITY, values, KEY_ACTIVITY+" = ? AND "+ KEY_ACTIVITY_TYPE+" = ? AND "+KEY_DATE+" = ? AND "+KEY_TIME+" = ?",new String[] { activity, type, date, time });
+        db.close();
+    }
+
 
 
     public boolean checkUser(String email, String password){
