@@ -1,73 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
 
-    >
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        app:title="               BeProductive"
+        android:background="@color/colorPrimary"
+        app:title="BeProductive"
         app:titleMarginStart="60dp"
-        app:titleTextColor="@android:color/white"
-        android:background="@color/colorPrimary" />
+        app:titleTextColor="@android:color/white" />
 
-    <TextView
-        android:id="@+id/changepwd"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/border"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:text="Change password"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/delacc"
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_alignEnd="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@mipmap/changep" />
+
+        <TextView
+            android:id="@+id/changepwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="Change password"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="184dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/border"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:text="Delete account"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignEnd="@+id/imageView2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="103dp"
-        app:srcCompat="@drawable/changep" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@mipmap/deleteacc" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="205dp"
-        app:srcCompat="@drawable/deleteacc" />
+        <TextView
+            android:id="@+id/delacc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="Delete account"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/color2"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -21,7 +21,7 @@ public class ConfirmPassword extends AppCompatActivity {
     private TextInputLayout textInputLayoutPassword;
     private TextInputLayout textInputLayoutConfirmPassword;
 
-   // private InputValidation inputValidation;
+    // private InputValidation inputValidation;
     private SqliteHelper databaseHelper;
     private NestedScrollView nestedScrollView;
     private AppCompatButton appCompatButtonReset;
@@ -33,7 +33,7 @@ public class ConfirmPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirmpassword);
 
-       // inputValidation = new InputValidation(this);
+        // inputValidation = new InputValidation(this);
         databaseHelper = new SqliteHelper(this);
 
         textInputEditTextPassword = (TextInputEditText) findViewById(R.id.textInputpass);

@@ -1,4 +1,5 @@
 package com.example.twin.projekti_schedules;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
             cv = (CardView)itemView.findViewById(R.id.cv);
             name = (TextView)itemView.findViewById(R.id.name);
             photo = (ImageView)itemView.findViewById(R.id.photo);
+
         }
     }
 
@@ -54,6 +56,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
     @Override
     public void onBindViewHolder(final PersonViewHolder personViewHolder, final int i) {
+
         personViewHolder.name.setText(activities.get(i).name);
         personViewHolder.photo.setImageResource(activities.get(i).photoid);
         personViewHolder.photo.setOnClickListener(new View.OnClickListener() {

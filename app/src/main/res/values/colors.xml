@@ -8,5 +8,13 @@
 <color name="lightGrey">#f0f0f0</color>
     <color name="color1">#ece994</color>
     <color name="color2">#a8a9a7</color>
+    <color name="task">#728a74</color>
+    <color name="statistics">#ac9dae</color>
+    <color name="settings">#8eb9b9</color>
+    <color name="logout">#9092bf</color>
+    <color name="buttonlogin">#f7b527</color>
+
+
+
 
 </resources>

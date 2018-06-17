@@ -69,7 +69,7 @@ public class forgotPassword extends AppCompatActivity {
             emptyInputEditText();
             startActivity(accountsIntent);
         } else {
-           // Snackbar.make(nestedScrollView, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show();
+            // Snackbar.make(nestedScrollView, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show();
         }
     }
 

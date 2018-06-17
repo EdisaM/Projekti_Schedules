@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -44,6 +46,10 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
         public AppCompatTextView textViewType;
         public AppCompatTextView textViewDate;
         public AppCompatTextView textViewTime;
+        public LinearLayout l1;
+        public LinearLayout l2;
+        public LinearLayout l3;
+        public CardView cardView;
         public CheckBox checkStatus;
 
 
@@ -55,6 +61,12 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
             textViewDate = (AppCompatTextView) view.findViewById(R.id.textViewDate);
             textViewTime = (AppCompatTextView) view.findViewById(R.id.textViewTime);
             checkStatus=(CheckBox)view.findViewById(R.id.checkStatus);
+            cardView=(CardView)view.findViewById(R.id.cardV);
+            l1=(LinearLayout)view.findViewById(R.id.l1);
+            l2=(LinearLayout)view.findViewById(R.id.l2);
+            l3=(LinearLayout)view.findViewById(R.id.l3);
+
+
 
 
 
@@ -77,6 +89,17 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
 
     @Override
     public void onBindViewHolder(final ActivityViewHolder holder, final int position) {
+
+
+       if(position%2==0) {
+            holder.cardView.setBackgroundColor(Color.parseColor("#fff176"));
+           holder.l1.setBackgroundColor(Color.parseColor("#fff176"));
+        }
+        else{
+            holder.cardView.setBackgroundColor(Color.parseColor("#dce775"));
+           holder.l1.setBackgroundColor(Color.parseColor("#dce775"));
+        }
+
 
         holder.textViewActivity.setText(listAddActivityvalues.get(position).getActivity());
         holder.textViewType.setText(listAddActivityvalues.get(position).getActivityType());

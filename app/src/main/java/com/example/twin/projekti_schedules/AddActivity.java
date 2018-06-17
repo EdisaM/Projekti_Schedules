@@ -1,6 +1,7 @@
 package com.example.twin.projekti_schedules;
 
 import android.app.TimePickerDialog;
+import android.content.ClipboardManager;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.NestedScrollView;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,6 +66,21 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         initViews();
         initObjects();
         initListeners();
+        final LocalData localData = new LocalData(getApplicationContext());
+        ClipboardManager myClipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MenuActivity.class));
+                finish();
+            }
+        });
 
         ArrayList<ItemData> lista=new ArrayList<>();
         lista.add(new ItemData("Select activity type:",R.mipmap.add));
@@ -71,6 +88,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         lista.add(new ItemData("Education",R.mipmap.education));
         lista.add(new ItemData("Entertainment",R.mipmap.entertainment));
         lista.add(new ItemData("Work",R.mipmap.success));
+
         Spinner sp=(Spinner)findViewById(R.id.spinner);
         SpinnerAdapter adapter=new SpinnerAdapter(this,
                 R.layout.spinner_layout,R.id.txt,lista);
@@ -119,6 +137,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
 
                         time.setText(selectedHour + ":" + selectedMinute);
+                        NotificationScheduler.setReminder(AddActivity.this, AlarmReceiver.class, localData.get_hour(), localData.get_min());
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -126,6 +145,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+        int selectedHour=localData.get_hour();
+        int selectedMinute=localData.get_min();
 
 
         date.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +164,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
+                                localData.set_day(dayOfMonth);
+                                localData.set_month(monthOfYear);
+                                localData.set_year(year);
 
 
                                 // set day of month , month and year value in the edit text
@@ -156,6 +180,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+        int selectedDay=localData.get_day();
+        int selectedMonth=localData.get_month();
+        int selectedYear=localData.get_year();
     }
 
     private void initViews(){

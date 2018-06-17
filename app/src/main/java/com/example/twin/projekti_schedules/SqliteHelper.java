@@ -166,13 +166,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
     {
         this.getWritableDatabase().execSQL("UPDATE " +TABLE_USERS+" SET "+KEY_PASSWORD+"='"+newPassword+"' WHERE "+KEY_PASSWORD+"='"+oldPassword+"'" );
     }
-
-    public void updateActivities(Integer position, String status){
-        this.getWritableDatabase().execSQL("UPDATE " +TABLE_ACTIVITY+" SET "+KEY_STATUS+"='"+status+"' WHERE "+KEY_ID_ACTIVITY+"='"+position+"'" );
-    }
     public void delete_user (String password,String email)
     {
-        this.getWritableDatabase().execSQL("DELETE "+"*"+" FROM " +TABLE_USERS+" WHERE "+KEY_PASSWORD+"='"+password+"' AND "+KEY_EMAIL+"='"+email+"'" );
+        this.getWritableDatabase().execSQL("DELETE FROM " +TABLE_USERS+" WHERE "+KEY_PASSWORD+"='"+password+"' AND "+KEY_EMAIL+"='"+email+"'" );
     }
 
     public boolean checkUser(String email){
@@ -207,6 +203,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.update(TABLE_USERS, values, KEY_EMAIL+" = ?",new String[] { email });
         db.close();
     }
+
 
 
     public boolean checkUser(String email, String password){
@@ -422,8 +419,6 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return count;
 
     }
-
-
-
+    
 
 }

@@ -74,14 +74,6 @@ public class FaqjaKryesore extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
         Calendar calendar=Calendar.getInstance();
         int currentDay=calendar.get(Calendar.DAY_OF_MONTH);
         SharedPreferences setting=getSharedPreferences("Prefs",0);
@@ -118,9 +110,6 @@ public class FaqjaKryesore extends AppCompatActivity {
 
         initializeData();
         initializeAdapter();
-
-
-
 
 
 
@@ -196,6 +185,5 @@ public class FaqjaKryesore extends AppCompatActivity {
 
 
 }
-
 
 
