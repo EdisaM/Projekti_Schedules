@@ -7,11 +7,17 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.twin.projekti_schedules.ViewActivity">
+    <include layout="@layout/custom_toolbar"></include>
+
 
     <LinearLayout
+
+
+        android:id="@+id/linear1"
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/gradientbackground">
+        android:layout_height="63dp"
+        android:background="@android:color/white">
 
         <Spinner
             android:id="@+id/filteractivities"
@@ -22,23 +28,30 @@
             android:layout_marginTop="15dp"
             android:dropDownWidth="match_parent"
             android:spinnerMode="dropdown"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:backgroundTint="@color/colorPrimary"
+            />
 
         <SearchView
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
+            android:queryBackground="@color/colorPrimary"
             android:queryHint="Search by date" />
 
     </LinearLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewBeneficiary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/gradient_bg"
-        android:scrollbars="vertical" />
+        android:layout_marginTop="120dp"
+
+        android:background="@android:color/white"
+        android:scrollbars="vertical">
+
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.design.widget.CoordinatorLayout>

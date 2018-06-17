@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                         Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
                         //SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                       Intent intent=new Intent(LoginActivity.this,FaqjaKryesore.class);
+                       Intent intent=new Intent(LoginActivity.this,MenuActivity.class);
                         startActivity(intent);
                         emptyInputEditText();
                         finish();
@@ -101,11 +101,11 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
 
                         //User Logged in Failed
-                        Snackbar.make(buttonLogin, "Failed to log in , please try again", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(buttonLogin, "Failed to log in , please try again.", Snackbar.LENGTH_LONG).show();
 
                     }
 
-
+                    finish();
                 }
             }
         });

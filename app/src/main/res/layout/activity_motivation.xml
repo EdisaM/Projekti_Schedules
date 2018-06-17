@@ -23,7 +23,7 @@
         android:layout_marginTop="1dip"
         android:cacheColorHint="#000000"
         android:dividerHeight="10dip"
-        android:background="@drawable/gradient_bg"
+        android:background="@android:color/white"
         android:listSelector="@drawable/list_selector"
         android:paddingLeft="5dip"
         android:paddingRight="5dip">

@@ -7,7 +7,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
-    card_view:cardBackgroundColor="@color/colorPrimary"
+    card_view:cardBackgroundColor="@color/cardview_light_background"
     card_view:cardCornerRadius="10dp">
 
 
@@ -20,8 +20,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:layout_height="35dp"
+            android:background="@drawable/gradient_bg"
             android:fadingEdge="horizontal|vertical"
             android:orientation="horizontal"
             android:outlineProvider="paddedBounds"
@@ -30,14 +30,14 @@
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewActivity"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
                 android:text="Activity"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button"
                 android:textColor="@color/colorText"
-                android:textSize="30sp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
+            android:background="@android:color/white"
             android:paddingBottom="15dp"
             android:paddingTop="15dp">
 
@@ -57,7 +58,8 @@
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
                 android:text="ActivityType"
-                android:textColor="#000" />
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewDate"
@@ -66,7 +68,8 @@
                 android:layout_weight="1"
                 android:text="Date"
                 android:textAlignment="center"
-                android:textColor="#000" />
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textViewTime"
@@ -75,7 +78,8 @@
                 android:layout_weight="1"
                 android:text="Time"
                 android:textAlignment="center"
-                android:textColor="#000" />
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
 
@@ -83,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="horizontal">
 
 
@@ -96,8 +100,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:text="Completed"
+                android:buttonTint="@android:color/darker_gray"
                 android:textAlignment="textStart"
-                android:textColor="@color/colorText" />
+                android:textColor="@android:color/darker_gray" />
 
         </LinearLayout>
 

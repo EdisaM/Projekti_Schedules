@@ -33,6 +33,7 @@ public class MenuActivity extends FaqjaKryesore {
 
         title = (TextView) findViewById(R.id.title_top);
         menuButton = (ImageView) findViewById(R.id.menu_icon);
+        menuButton.setImageResource(R.drawable.menuico);
         title.setText("BeProductive");
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +59,14 @@ public class MenuActivity extends FaqjaKryesore {
         fragmentTransaction.setCustomAnimations(R.anim.slide_down, R.anim.slide_up);
         fragmentTransaction.remove(menuFragment);
         fragmentTransaction.commit();
-        menuButton.setImageResource(R.drawable.menu);
+        menuButton.setImageResource(R.drawable.menuico);
         isFragmentLoaded = false;
 
     }
     public void loadFragment(){
         FragmentManager fm = getSupportFragmentManager();
         menuFragment = fm.findFragmentById(R.id.container);
-        menuButton.setImageResource(R.drawable.menu);
+        menuButton.setImageResource(R.drawable.menuico);
 
         if(menuFragment == null){
             menuFragment = new MenuFragment();

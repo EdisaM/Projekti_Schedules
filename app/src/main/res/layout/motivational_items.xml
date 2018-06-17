@@ -16,7 +16,7 @@
         android:layout_marginTop="25dp"
         android:paddingRight="50dp"
         android:text="MultiAutoCompleteTextView"
-         android:textColor="#848378"
+         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold" />
 
