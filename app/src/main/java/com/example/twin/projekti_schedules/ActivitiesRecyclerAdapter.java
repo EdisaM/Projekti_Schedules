@@ -21,7 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Edisa on 6/9/2018.
@@ -117,10 +121,17 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
         holder.textViewType.setText(listAddActivityvalues.get(position).getActivityType());
         holder.textViewDate.setText(listAddActivityvalues.get(position).getDate());
         holder.textViewTime.setText(listAddActivityvalues.get(position).getTime());
-        final String activityType=holder.textViewType.toString();
-        final String activity1=holder.textViewActivity.toString();
-        final String date1=holder.textViewDate.toString();
-        final String time1=holder.textViewTime.toString();
+
+
+
+
+
+
+
+        final String activityType=holder.textViewType.getText().toString();
+        final String activity1=holder.textViewActivity.getText().toString();
+        final String date1=holder.textViewDate.getText().toString();
+        final String time1=holder.textViewTime.getText().toString();
         holder.checkStatus.setTag(position);
         holder.checkStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
