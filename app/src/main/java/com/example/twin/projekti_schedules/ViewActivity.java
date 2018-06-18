@@ -43,6 +43,13 @@ public class ViewActivity extends AppCompatActivity {
     public String date;
     public String time;
 
+    public final Calendar c = Calendar.getInstance();
+    public final int mYear = c.get(Calendar.YEAR); // current year
+    public final int mMonth = c.get(Calendar.MONTH); // current month
+    public final int Month=mMonth+1;
+    public final int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+
+
     Context context = ViewActivity.this;
     private RecyclerView recyclerViewBeneficiary;
     private ArrayList<AddActivity_values> listAddActivityvalues;
@@ -83,11 +90,6 @@ public class ViewActivity extends AppCompatActivity {
 
         /////////DATE FORMATTING FOR SPINNER METHODS////////////
 
-        final Calendar c = Calendar.getInstance();
-        final int mYear = c.get(Calendar.YEAR); // current year
-        final int mMonth = c.get(Calendar.MONTH); // current month
-        final int Month=mMonth+1;
-        final int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
         checkStatus=(CheckBox)findViewById(R.id.checkStatus);
 
 
@@ -106,36 +108,41 @@ public class ViewActivity extends AppCompatActivity {
 
                 switch (position){
                     case 0:
-                        listAddActivityvalues.clear();
-                        listAddActivityvalues.addAll(databaseHelper.getAllActivities());
-                        Toast.makeText(ViewActivity.this, "You are now seeing all activities", Toast.LENGTH_SHORT).show();
+                                String date = mDay + "/" + Month + "/" + mYear;
+                                if (databaseHelper.CountActivities(date, "0") > 0) {
+                                    listAddActivityvalues.clear();
+                                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date, "0"));
+
+                                }
+                                else {
+                                    Toast.makeText(ViewActivity.this, "There are no activities for today "+date, Toast.LENGTH_LONG).show();
+                                    listAddActivityvalues.clear();
+                                }
+                        activitiesRecyclerAdapter.notifyDataSetChanged();
+
                         break;
                     case 1:
-                        String date= mDay+"/"+Month+"/"+mYear;
-                        if(databaseHelper.CountActivities(date)>0) {
-                            listAddActivityvalues.clear();
-                            listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date));
-                            Toast.makeText(ViewActivity.this, "All activities for today "+date, Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Toast.makeText(ViewActivity.this, "There are no activities for today "+date, Toast.LENGTH_LONG).show();
-                            listAddActivityvalues.clear();
-                        }
-
+                        listAddActivityvalues.clear();
+                        listAddActivityvalues.addAll(databaseHelper.getAllActivities("0"));
+                        Toast.makeText(ViewActivity.this, "You are now seeing all activities", Toast.LENGTH_SHORT).show();
+                        activitiesRecyclerAdapter.notifyDataSetChanged();
                         break;
                     case 2:
                         String monthYear="/"+Month+"/"+ mYear;
-                        if(databaseHelper.CountActivitiesByMonth(monthYear)>0) {
+                        if(databaseHelper.CountActivitiesByMonth(monthYear, "0")>0) {
 
                             listAddActivityvalues.clear();
-                            listAddActivityvalues.addAll(databaseHelper.getFilteredActivitiesByMonth(monthYear));
+                            listAddActivityvalues.addAll(databaseHelper.getFilteredActivitiesByMonth(monthYear, "0"));
                             Toast.makeText(ViewActivity.this, "All activities for this month. ", Toast.LENGTH_SHORT).show();
+                            activitiesRecyclerAdapter.notifyDataSetChanged();
                         }
                         else
                         {
                             Toast.makeText(ViewActivity.this, "There are no activities for this month. ", Toast.LENGTH_LONG).show();
                             listAddActivityvalues.clear();
+                            activitiesRecyclerAdapter.notifyDataSetChanged();
                         }
+                        break;
 
 
 
@@ -159,10 +166,10 @@ public class ViewActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 if(query.length()>0){
 
-                if(databaseHelper.CountActivities(query.toString().trim())>0){
+                if(databaseHelper.CountActivities(query.toString().trim(), "0")>0){
                     listAddActivityvalues.clear();
-                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(query.toString().trim()));
-                    Toast.makeText(ViewActivity.this, "You have "+databaseHelper.CountActivities(query.toString().trim())+" activities in "+query, Toast.LENGTH_LONG).show();
+                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(query.toString().trim(), "0"));
+                    Toast.makeText(ViewActivity.this, "You have "+databaseHelper.CountActivities(query.toString().trim(),"0")+" activities in "+query, Toast.LENGTH_LONG).show();
 
 
                 }else{
@@ -171,7 +178,7 @@ public class ViewActivity extends AppCompatActivity {
 
             } else{
                     listAddActivityvalues.clear();
-                    listAddActivityvalues.addAll(databaseHelper.getAllActivities());
+                    listAddActivityvalues.addAll(databaseHelper.getAllActivities("0"));
 
                 }
                 return true;
@@ -216,9 +223,12 @@ public class ViewActivity extends AppCompatActivity {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                listAddActivityvalues.clear();
-                listAddActivityvalues.addAll(databaseHelper.getAllActivities());
+                String date = mDay + "/" + Month + "/" + mYear;
+                if (databaseHelper.CountActivities(date, "0") > 0) {
+                    listAddActivityvalues.clear();
+                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date, "0"));
 
+                }
                 return null;
             }
 

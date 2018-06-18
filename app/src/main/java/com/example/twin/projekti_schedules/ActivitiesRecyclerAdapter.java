@@ -103,31 +103,31 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
     public void onBindViewHolder(final ActivityViewHolder holder, final int position) {
 
 
-       if(position%2==0) {
-           // holder.cardView.setBackgroundColor(Color.parseColor("#fff176"));
-           holder.l1.setBackgroundColor(Color.parseColor("#AFE7C271"));
-        }
-        else{
-           // holder.cardView.setBackgroundColor(Color.parseColor("#dce775"));
-           holder.l1.setBackgroundColor(Color.parseColor("#AF75BF91"));
-        }
-
 
         holder.textViewActivity.setText(listAddActivityvalues.get(position).getActivity());
         holder.textViewType.setText(listAddActivityvalues.get(position).getActivityType());
         holder.textViewDate.setText(listAddActivityvalues.get(position).getDate());
         holder.textViewTime.setText(listAddActivityvalues.get(position).getTime());
-        final String activityType=holder.textViewType.toString();
-        final String activity1=holder.textViewActivity.toString();
-        final String date1=holder.textViewDate.toString();
-        final String time1=holder.textViewTime.toString();
+
+        final String activityType=holder.textViewType.getText().toString();
+        final String activity1=holder.textViewActivity.getText().toString();
+        final String date1=holder.textViewDate.getText().toString();
+        final String time1=holder.textViewTime.getText().toString();
         holder.checkStatus.setTag(position);
         holder.checkStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(holder.checkStatus.isChecked()) {
+                    SqliteHelper db = new SqliteHelper(compoundButton.getContext());
+                    db.updateActivities("1", activity1, activityType, date1, time1);
+                    Toast.makeText(compoundButton.getContext(), "Activity is now set as completed and will be moved to Statistics", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    SqliteHelper db = new SqliteHelper(compoundButton.getContext());
+                    db.updateActivities("0", activity1, activityType, date1, time1);
+                    Toast.makeText(compoundButton.getContext(), "Activity is now set as uncompleted", Toast.LENGTH_LONG).show();
+                }
 
-                SqliteHelper db=new SqliteHelper(compoundButton.getContext());
-                db.updateActivities("1", activity1, activityType, date1, time1);
             }
         });
         holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
