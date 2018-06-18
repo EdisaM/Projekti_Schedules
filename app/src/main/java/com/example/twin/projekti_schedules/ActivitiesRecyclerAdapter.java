@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
@@ -79,6 +80,7 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
 
 
 
+
         }
 
 
@@ -115,7 +117,19 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
         holder.textViewType.setText(listAddActivityvalues.get(position).getActivityType());
         holder.textViewDate.setText(listAddActivityvalues.get(position).getDate());
         holder.textViewTime.setText(listAddActivityvalues.get(position).getTime());
+        final String activityType=holder.textViewType.toString();
+        final String activity1=holder.textViewActivity.toString();
+        final String date1=holder.textViewDate.toString();
+        final String time1=holder.textViewTime.toString();
         holder.checkStatus.setTag(position);
+        holder.checkStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                SqliteHelper db=new SqliteHelper(compoundButton.getContext());
+                db.updateActivities("1", activity1, activityType, date1, time1);
+            }
+        });
         holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

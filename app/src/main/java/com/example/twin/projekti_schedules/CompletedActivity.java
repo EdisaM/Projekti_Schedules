@@ -74,6 +74,7 @@ public class CompletedActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SqliteHelper db=new SqliteHelper(CompletedActivity.this);
                 db.updateActivities("1", activity1, activityType, date1, time1);
 
             }

@@ -137,7 +137,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
 
                         time.setText(selectedHour + ":" + selectedMinute);
-                        NotificationScheduler.setReminder(AddActivity.this, AlarmReceiver.class, localData.get_hour(), localData.get_min());
+                      //  NotificationScheduler.setReminder(AddActivity.this, AlarmReceiver.class, localData.get_hour(), localData.get_min());
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
