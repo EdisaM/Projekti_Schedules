@@ -69,10 +69,11 @@ public class ViewActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         //placing toolbar in place of actionbar
+
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +82,7 @@ public class ViewActivity extends AppCompatActivity {
                 finish();
             }
         });
+
 
 
 

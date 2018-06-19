@@ -67,6 +67,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         initObjects();
         initListeners();
         final LocalData localData = new LocalData(getApplicationContext());
+
+
+
         ClipboardManager myClipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -134,10 +137,17 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 final TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(AddActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                    public void onTimeSet(TimePicker timePicker, final int selectedHour,final int selectedMinute) {
+                        localData.set_hour(selectedHour);
+                        localData.set_min(selectedMinute);
 
                         time.setText(selectedHour + ":" + selectedMinute);
-                      //  NotificationScheduler.setReminder(AddActivity.this, AlarmReceiver.class, localData.get_hour(), localData.get_min());
+                        NotificationScheduler.setReminder(AddActivity.this,AlarmReceiver.class,
+
+                                localData.get_hour(),localData.get_min());
+
+
+
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -147,6 +157,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         });
         int selectedHour=localData.get_hour();
         int selectedMinute=localData.get_min();
+        NotificationScheduler.setReminder(AddActivity.this,AlarmReceiver.class,
+
+                localData.get_hour(),localData.get_min());
+
 
 
         date.setOnClickListener(new View.OnClickListener() {
@@ -162,16 +176,18 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         new DatePickerDialog.OnDateSetListener() {
 
                             @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                localData.set_day(dayOfMonth);
-                                localData.set_month(monthOfYear);
-                                localData.set_year(year);
+                            public void onDateSet(DatePicker view,final int year, final int monthOfYear,final int dayOfMonth) {
+
 
 
                                 // set day of month , month and year value in the edit text
                                 date.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
+                                NotificationScheduler.setReminderdate(AddActivity.this,AlarmReceiver.class,
+
+                                        localData.get_day(),localData.get_month(),localData.get_year());
+
+
 
                             }
                         }, mYear, mMonth, mDay);
@@ -180,9 +196,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
-        int selectedDay=localData.get_day();
-        int selectedMonth=localData.get_month();
-        int selectedYear=localData.get_year();
+
+        final int selectedDay= localData.get_day();
+        final int selectedMonth=localData.get_month();
+        final int selectedYear=localData.get_year();
     }
 
     private void initViews(){

@@ -34,6 +34,7 @@
         <activity android:name=".CompletedActivity"></activity>
         <activity android:name=".StaticticsActivity"></activity>
         <activity android:name=".motivation" />
+        <receiver android:name=".AlarmReceiver"></receiver>
         <activity android:name=".FaqjaKryesore" />
         <activity android:name=".ViewActivity"></activity>
     </application>
