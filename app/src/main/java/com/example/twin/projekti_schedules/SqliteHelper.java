@@ -210,13 +210,6 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateActivities(String status, String activity, String type, String date, String time){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_STATUS, status);
-        db.update(TABLE_ACTIVITY, values, KEY_ACTIVITY+" = ? AND "+ KEY_ACTIVITY_TYPE+" = ? AND "+KEY_DATE+" = ? AND "+KEY_TIME+" = ?",new String[] { activity, type, date, time });
-        db.close();
-    }
 
 
 
@@ -245,7 +238,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    //ALL METHODS FOR ACTIVITIY HANDLING
+    ////////////////////////////////////////ALL METHODS FOR ACTIVITIY HANDLING//////////////////////////////////////////////////////////////////////////////////
 
     public void addActivities(AddActivity_values addActivityvalues) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -261,8 +254,16 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateActivities(String status, String activity, String type, String date, String time){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_STATUS, status);
+        db.update(TABLE_ACTIVITY, values, KEY_ACTIVITY+" = ? AND "+ KEY_ACTIVITY_TYPE+" = ? AND "+KEY_DATE+" = ? AND "+KEY_TIME+" = ?",new String[] { activity, type, date, time });
+        db.close();
+    }
 
-    public int CountActivities(String query){
+
+    public int CountActivities(String query, String status){
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
                 KEY_ACTIVITY,
@@ -273,8 +274,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_DATE+" = ?",
-                new String[] {query},
+                KEY_DATE+" = ? AND "+KEY_STATUS+" =?",
+                new String[] {query, status},
                 null,
                 null,
                 null);
@@ -284,7 +285,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
     }
 
-    public List<AddActivity_values> getAllActivities() {
+    public List<AddActivity_values> getAllActivities(String status) {
         // array of columns to fetch
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
@@ -301,8 +302,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                null,        //columns for the WHERE clause
-                null,        //The values for the WHERE clause
+                KEY_STATUS+"= ?",        //columns for the WHERE clause
+                new String[] {status},        //The values for the WHERE clause
                 null,       //group the rows
                 null,       //filter by row groups
                KEY_DATE); //The sort order
@@ -327,7 +328,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return addActivityvaluesList;
     }
 
-    public List<AddActivity_values> getFilteredActivities(String filter) {
+    public List<AddActivity_values> getFilteredActivities(String filter,String status) {
         // array of columns to fetch
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
@@ -344,8 +345,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_DATE+" = ?",
-                new String[] {filter},
+                KEY_DATE+" = ? AND "+KEY_STATUS+" = ?",
+                new String[] {filter, status},
                 null,
                 null,
                 null);
@@ -370,7 +371,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return addActivityvaluesList;
     }
 
-    public List<AddActivity_values> getFilteredActivitiesByMonth(String filter) {
+    public List<AddActivity_values> getFilteredActivitiesByMonth(String filter, String status) {
         // array of columns to fetch
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
@@ -387,8 +388,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_DATE+" LIKE ?",
-                new String[] {"%"+filter},
+                KEY_DATE+" LIKE ? AND "+ KEY_STATUS+" = ?",
+                new String[] {"%"+filter,status},
                 null,
                 null,
                 null);
@@ -412,7 +413,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         // return user list
         return addActivityvaluesList;
     }
-    public int CountActivitiesByMonth(String query){
+    public int CountActivitiesByMonth(String query, String status){
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
                 KEY_ACTIVITY,
@@ -423,8 +424,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_DATE+" LIKE ?",
-                new String[] {"%"+query},
+                KEY_DATE+" LIKE ? AND "+KEY_STATUS+" = ?",
+                new String[] {"%"+query, status},
                 null,
                 null,
                 null);

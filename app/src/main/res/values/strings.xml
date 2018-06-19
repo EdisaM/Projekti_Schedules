@@ -1,7 +1,7 @@
 <resources>
     <string-array name="choices">
-        <item>All</item>
         <item>Today</item>
+        <item>All</item>
         <item>This month</item>
     </string-array>
 

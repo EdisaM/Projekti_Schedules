@@ -52,7 +52,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    android:src="@drawable/task" />
+                    android:src="@mipmap/task" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    android:src="@drawable/motication" />
+                    android:src="@mipmap/motication" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    android:src="@drawable/statistics" />
+                    android:src="@mipmap/statistics" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -151,7 +151,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    android:src="@drawable/setting" />
+                    android:src="@mipmap/setting" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    android:src="@drawable/help1" />
+                    android:src="@mipmap/help1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -220,7 +220,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.5"
-                    android:src="@drawable/logout1" />
+                    android:src="@mipmap/logout1" />
 
                 <TextView
                     android:layout_width="wrap_content"
