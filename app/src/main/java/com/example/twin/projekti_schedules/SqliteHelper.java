@@ -261,6 +261,26 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.update(TABLE_ACTIVITY, values, KEY_ACTIVITY+" = ? AND "+ KEY_ACTIVITY_TYPE+" = ? AND "+KEY_DATE+" = ? AND "+KEY_TIME+" = ?",new String[] { activity, type, date, time });
         db.close();
     }
+    public int CountActivities(String status){
+        String[] columns = {
+                KEY_ACTIVITY_TYPE,
+                KEY_ACTIVITY,
+                KEY_DATE,
+                KEY_TIME,
+                KEY_STATUS
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
+                columns,    //columns to return
+                KEY_STATUS+" =?",
+                new String[] {status},
+                null,
+                null,
+                null);
+
+        int count=cursor.getCount();
+        return count;
+    }
 
 
     public int CountActivities(String query, String status){

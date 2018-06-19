@@ -32,6 +32,7 @@
         <activity android:name=".aboutus"></activity>
         <activity android:name=".ConfirmPassword"></activity>
         <activity android:name=".CompletedActivity"></activity>
+        <activity android:name=".StaticticsActivity"></activity>
         <activity android:name=".motivation" />
         <activity android:name=".FaqjaKryesore" />
         <activity android:name=".ViewActivity"></activity>
