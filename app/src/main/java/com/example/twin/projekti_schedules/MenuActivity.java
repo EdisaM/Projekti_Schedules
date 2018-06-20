@@ -1,6 +1,7 @@
 package com.example.twin.projekti_schedules;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.Random;
 
 public class MenuActivity extends FaqjaKryesore {
 
@@ -26,18 +30,39 @@ public class MenuActivity extends FaqjaKryesore {
         super.onCreate(savedInstanceState);
         initAddlayout(R.layout.menu_activity);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        final LocalData localData = new LocalData(getApplicationContext());
+
 
          isFragmentLoaded=false;
         Intent intent = getIntent();
          text = intent.getStringExtra("intent");
 
-         localData.set_hour(13);
-         localData.set_min(15);
 
-        NotificationScheduler.setReminder(MenuActivity.this,AlarmReceiver.class,
 
-                  localData.get_hour(),localData.get_min(),localData.get_day(),localData.get_month(),localData.get_year());
+
+
+
+       /* Calendar calendar = Calendar.getInstance();
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        SharedPreferences setting = getSharedPreferences("Prefs", 0);
+        int lastDay = setting.getInt("day", 0);
+        if (lastDay != currentDay) {
+            SharedPreferences.Editor editor = setting.edit();
+            editor.putInt("day", currentDay);
+            editor.commit();*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,6 +87,17 @@ public class MenuActivity extends FaqjaKryesore {
                 }
             }
         });
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();  // Always call the superclass method first
+        final LocalData localData = new LocalData(getApplicationContext());
+        localData.set_hour(12);
+        localData.set_min(30);
+
+        NotificationScheduler.setReminder(MenuActivity.this,AlarmReceiver.class,
+
+                localData.get_hour(),localData.get_min());
     }
 
     public void hideFragment(){

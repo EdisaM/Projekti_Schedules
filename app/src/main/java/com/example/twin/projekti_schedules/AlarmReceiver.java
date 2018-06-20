@@ -24,8 +24,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                 // Set the alarm here.
                 Log.d(TAG, "onReceive: BOOT_COMPLETED");
                 LocalData localData = new LocalData(context);
-                NotificationScheduler.setReminder(context, AlarmReceiver.class, localData.get_hour(), localData.get_min(),localData.get_day(),localData.get_month(),localData.get_year());
+                NotificationScheduler.setReminder(context, AlarmReceiver.class, localData.get_hour(), localData.get_min());
                 //NotificationScheduler.setReminderdate(context, AlarmReceiver.class, localData.get_day(), localData.get_month(),localData.get_year());
+                //NotificationScheduler.setRemindertime(context, AlarmReceiver.class, localData.get_hour(), localData.get_min());
 
                 return;
             }

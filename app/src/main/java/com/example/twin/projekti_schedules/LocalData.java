@@ -3,9 +3,6 @@ package com.example.twin.projekti_schedules;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by Jaison on 18/06/17.
- */
 
 public class LocalData {
 
