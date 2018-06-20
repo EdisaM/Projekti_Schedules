@@ -8,66 +8,85 @@
     android:background="@android:color/transparent"
 
     >
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        app:title="BeProductive"
-        app:titleMarginStart="60dp"
         android:layout_gravity="start"
-        app:titleTextColor="@android:color/white"
         android:background="@color/colorPrimary"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        app:title="BeProductive"
+        app:titleTextColor="@android:color/white" />
 
 
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center_vertical"
-        android:background="#79f4f4ed"
-        android:gravity="fill_vertical"
-        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:background="#79f4f4ed">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
-            android:src="@drawable/logo1" />
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="#79f4f4ed"
+            android:gravity="fill_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="40dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/logo1" />
 
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:ems="10"
-            android:hint="Email"
-             />
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Email"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@id/editText1"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/editText1"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
 
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/buttonSendKey"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/editText2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/colorPrimary"
             android:text="Confirm"
-            android:textColor="@color/colorText" />
-
-    </LinearLayout>
+            android:textColor="@color/colorText"
+            android:visibility="visible" />
+    </RelativeLayout>
 
 </RelativeLayout>

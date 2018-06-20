@@ -80,6 +80,7 @@ public class FaqjaKryesore extends AppCompatActivity {
         setContentView(R.layout.faqjakryesore);
         slide = (ViewPager) findViewById(R.id.slideViewPager);
         l1 = (LinearLayout) findViewById(R.id.linearLayout);
+        l1.setVisibility(View.VISIBLE);
         sliderAdapter = new SliderAdapter(this);
         slide.setAdapter(sliderAdapter);
 
@@ -103,7 +104,6 @@ public class FaqjaKryesore extends AppCompatActivity {
 
         }
 
-
         //getting the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -116,7 +116,7 @@ public class FaqjaKryesore extends AppCompatActivity {
 
     }
     public void addDotsIndicator(int position) {
-        mDots = new TextView[2];
+        mDots = new TextView[3];
         l1.removeAllViews();
         for (int i = 0; i < mDots.length; i++) {
             mDots[i] = new TextView(this);
@@ -182,26 +182,7 @@ public class FaqjaKryesore extends AppCompatActivity {
         @Override
         public void onPageSelected(final int position) {
             addDotsIndicator(position);
-            ImageView img=(ImageView)findViewById(R.id.slide_image);
-            img.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View view) {
-                    final Intent intent;
-                    switch (position){
-                        case 0:
-                        intent=new Intent(FaqjaKryesore.this, AddActivity.class);
-                        startActivity(intent);
-                        finish();
-                        break;
-                        case 1:
-                            intent=new Intent(FaqjaKryesore.this, ViewActivity.class);
-                            startActivity(intent);
-                            finish();
-                            break;
-                    }
-                }
-            });
 
         }
 

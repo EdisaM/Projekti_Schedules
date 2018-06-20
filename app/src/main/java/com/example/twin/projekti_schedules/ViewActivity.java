@@ -175,11 +175,11 @@ public class ViewActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 if(query.length()>0){
 
-                if(databaseHelper.CountActivities(query.toString().trim(), "0")>0){
+                if(databaseHelper.CountActivities("0", text)>0){
                     listAddActivityvalues.clear();
                     listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(query.toString().trim(), "0",text));
-                    Toast.makeText(ViewActivity.this, "You have "+databaseHelper.CountActivities(query.toString().trim(),"0")+" activities in "+query, Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(ViewActivity.this, "You have "+databaseHelper.CountActivities("0",text)+" activities in "+query, Toast.LENGTH_LONG).show();
+                    activitiesRecyclerAdapter.notifyDataSetChanged();
 
                 }else{
                     Toast.makeText(ViewActivity.this, "There are no activities for  "+query+" ", Toast.LENGTH_LONG).show();
@@ -188,6 +188,7 @@ public class ViewActivity extends AppCompatActivity {
             } else{
                     listAddActivityvalues.clear();
                     listAddActivityvalues.addAll(databaseHelper.getAllActivities("0",text));
+                    activitiesRecyclerAdapter.notifyDataSetChanged();
 
                 }
                 return true;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -14,9 +14,14 @@
         app:titleMarginStart="60dp"
         app:titleTextColor="@android:color/white" />
 
+
     <LinearLayout
+        android:id="@+id/lin8"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnUpdate2"
+        android:layout_below="@+id/toolbar2"
+        android:layout_centerVertical="false"
         android:orientation="vertical">
 
         <TextView
@@ -135,39 +140,33 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnUpdate2"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:layout_above="@+id/btnUpdate1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="false"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:text="Delete Activity "
+        android:textColor="@color/colorText" />
 
-        <Button
-            android:id="@+id/btnUpdate2"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="216dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="80dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="Delete Activity "
-            android:textColor="@color/colorText" />
+    <Button
+        android:id="@+id/btnUpdate1"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorPrimary"
+        android:text="Change date and time"
+        android:textColor="@color/colorText" />
 
-        <Button
-            android:id="@+id/btnUpdate1"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="216dp"
-            android:layout_height="wrap_content"
-             android:layout_marginLeft="80dp"
-            android:layout_alignParentBottom="true"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="Change date and time"
-            android:textColor="@color/colorText" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

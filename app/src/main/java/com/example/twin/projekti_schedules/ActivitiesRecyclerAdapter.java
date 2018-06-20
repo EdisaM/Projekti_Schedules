@@ -119,7 +119,8 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
                 if(holder.checkStatus.isChecked()) {
                     SqliteHelper db = new SqliteHelper(compoundButton.getContext());
                     db.updateActivities("1", activity1, activityType, date1, time1);
-                    Toast.makeText(compoundButton.getContext(), "Activity is now set as completed and will be moved to Statistics", Toast.LENGTH_LONG).show();
+                    Congratulations alert=new Congratulations();
+                    alert.showDialog(compoundButton.getContext());
                 }
                 else{
                     SqliteHelper db = new SqliteHelper(compoundButton.getContext());

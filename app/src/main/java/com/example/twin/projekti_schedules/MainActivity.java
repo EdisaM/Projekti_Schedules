@@ -54,12 +54,8 @@ public class MainActivity extends AppCompatActivity {
                         //Email does not exist now add new user to database
                         sqliteHelper.addUser(new User(null, UserName, Email, Password));
                         Snackbar.make(buttonRegister, "User created successfully! Please Login ", Snackbar.LENGTH_LONG).show();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                finish();
-                            }
-                        }, Snackbar.LENGTH_LONG);
+                        Intent i=new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(i);
                     }else {
 
                         //Email exists with email input provided so show error user already exist

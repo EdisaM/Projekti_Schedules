@@ -24,6 +24,17 @@ public class MenuActivity extends FaqjaKryesore {
     public static ImageView menuButton;
     public static FragmentTransaction fragmentTransaction;
     public static String text;
+    String txt1= LoginActivity.id;
+
+    public SqliteHelper db=new SqliteHelper(this);
+
+    //time
+    public final Calendar c = Calendar.getInstance();
+    public final int mYear = c.get(Calendar.YEAR); // current year
+    public final int mMonth = c.get(Calendar.MONTH); // current month
+    public final int Month=mMonth+1;
+    public final int mDay = c.get(Calendar.DAY_OF_MONTH); // current
+    public final int mHour=c.get(Calendar.HOUR_OF_DAY);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +103,14 @@ public class MenuActivity extends FaqjaKryesore {
     protected void onStop() {
         super.onStop();  // Always call the superclass method first
         final LocalData localData = new LocalData(getApplicationContext());
-        localData.set_hour(12);
-        localData.set_min(30);
+        localData.set_hour(16);
+        localData.set_min(10);
 
         NotificationScheduler.setReminder(MenuActivity.this,AlarmReceiver.class,
 
                 localData.get_hour(),localData.get_min());
     }
+
 
     public void hideFragment(){
        fragmentTransaction=getSupportFragmentManager().beginTransaction();

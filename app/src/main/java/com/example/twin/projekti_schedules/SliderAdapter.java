@@ -28,12 +28,14 @@ public class SliderAdapter extends PagerAdapter {
 
     public int[] slide_images={
             R.mipmap.add,
-            R.mipmap.calendar
+            R.mipmap.calendar,
+            R.mipmap.stats
 
     };
     public String[] slide_headings={
       "ADD NEW ACTIVITY",
-            "TODAY'S SCHEDULE"
+            "TODAY'S SCHEDULE",
+            "STATISTICS"
     };
 
     @Override
@@ -63,6 +65,9 @@ public class SliderAdapter extends PagerAdapter {
                         break;
                     case 1:
                         intent= new Intent(view.getContext(), ViewActivity.class);
+                        break;
+                    case 2:
+                        intent=new Intent(view.getContext(),StaticticsActivity.class);
                         break;
                     default:
                         intent =  new Intent(view.getContext(), AddActivity.class);
