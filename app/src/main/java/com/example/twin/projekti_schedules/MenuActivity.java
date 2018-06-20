@@ -26,11 +26,18 @@ public class MenuActivity extends FaqjaKryesore {
         super.onCreate(savedInstanceState);
         initAddlayout(R.layout.menu_activity);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        final LocalData localData = new LocalData(getApplicationContext());
 
          isFragmentLoaded=false;
         Intent intent = getIntent();
          text = intent.getStringExtra("intent");
 
+         localData.set_hour(13);
+         localData.set_min(15);
+
+        NotificationScheduler.setReminder(MenuActivity.this,AlarmReceiver.class,
+
+                  localData.get_hour(),localData.get_min(),localData.get_day(),localData.get_month(),localData.get_year());
 
 
 

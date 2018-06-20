@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                         Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
                         //SharedPreferences.Editor editor = sharedpreferences.edit();
                        // id=editTextEmail.getText().toString().trim();
+                        //id=Email;
 
                        Intent intent=new Intent(LoginActivity.this,MenuActivity.class);
 
@@ -202,6 +203,7 @@ public class LoginActivity extends AppCompatActivity {
         if (sqliteHelper.checkUser(email, password)) {
             PreferenceUtils.saveEmail(email, this);
             PreferenceUtils.savePassword(password, this);
+            id=PreferenceUtils.getEmail(this);
             //Intent accountsIntent = new Intent(this, FaqjaKryesore.class);
             //accountsIntent.putExtra("EMAIL", editTextEmail.getText().toString().trim());
             //emptyInputEditText();

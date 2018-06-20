@@ -161,9 +161,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         localData.set_min(selectedMinute);
 
                         time.setText(selectedHour + ":" + selectedMinute);
-                        //NotificationScheduler.setRemindertime(AddActivity.this,AlarmReceiver.class,
+                        NotificationScheduler.setRemindertime(AddActivity.this,AlarmReceiver.class,
 
-//                                localData.get_hour(),localData.get_min());
+                               localData.get_hour(),localData.get_min());
 
 
 
@@ -264,7 +264,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         }
     }
     private void postDataToSQLite() {
-            text = MenuActivity.getString();
+            text =LoginActivity.id;
 
             addActivityvalues.setActivityType(activityType.trim());
             addActivityvalues.setActivity(activity.getText().toString().trim());
@@ -283,24 +283,25 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
 
             startActivity(intent_view);
+            finish();
 
 
         }
 
-    public void start() {
+   /* public void start() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         int interval = 1000 * 60 * 20;
 
-        /* Set the alarm to start at 10:30 AM */
+         //Set the alarm to start at 10:30 AM
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 16);
         calendar.set(Calendar.MINUTE, 37);
 
-        /* Repeating on every 20 minutes interval */
+        //Repeating on every 20 minutes interval
         manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 1000 * 60 * 20, pendingIntent);
-    }
+    }  */
 
 
 

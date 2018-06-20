@@ -43,6 +43,7 @@ public class ViewActivity extends AppCompatActivity {
     public String date;
     public String time;
     public String text;
+    public String id;
 
     public final Calendar c = Calendar.getInstance();
     public final int mYear = c.get(Calendar.YEAR); // current year
@@ -64,12 +65,13 @@ public class ViewActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        text = MenuActivity.getString();
+        //text = MenuActivity.getString();
         //placing toolbar in place of actionbar
+        text= LoginActivity.id;
 
 
         setSupportActionBar(toolbar);
@@ -83,6 +85,9 @@ public class ViewActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+       // Toast.makeText(ViewActivity.this, "There are no activities for today "+text, Toast.LENGTH_LONG).show();
+
 
 
 
@@ -112,7 +117,7 @@ public class ViewActivity extends AppCompatActivity {
                 switch (position){
                     case 0:
                                 String date = mDay + "/" + Month + "/" + mYear;
-                                if (databaseHelper.CountActivities(date, "0") > 0) {
+                                if (databaseHelper.CountActivities(date, "0",text) > 0) {
                                     listAddActivityvalues.clear();
                                     listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date, "0",text));
 
@@ -132,7 +137,7 @@ public class ViewActivity extends AppCompatActivity {
                         break;
                     case 2:
                         String monthYear="/"+Month+"/"+ mYear;
-                        if(databaseHelper.CountActivitiesByMonth(monthYear, "0")>0) {
+                        if(databaseHelper.CountActivitiesByMonth(monthYear, "0",text)>0) {
 
                             listAddActivityvalues.clear();
                             listAddActivityvalues.addAll(databaseHelper.getFilteredActivitiesByMonth(monthYear, "0",text));
@@ -222,12 +227,13 @@ public class ViewActivity extends AppCompatActivity {
      * This method is to fetch all user records from SQLite
      */
     private void getDataFromSQLite() {
+
         // AsyncTask is used that SQLite operation not blocks the UI Thread.
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 String date = mDay + "/" + Month + "/" + mYear;
-                if (databaseHelper.CountActivities(date, "0") > 0) {
+                if (databaseHelper.CountActivities(date, "0",text) > 0) {
                     listAddActivityvalues.clear();
                     listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date, "0",text));
 

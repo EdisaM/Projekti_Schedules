@@ -23,6 +23,8 @@ import java.util.Calendar;
 public class StatisticsSliderAdapter extends PagerAdapter {
     Context context;
     LayoutInflater layoutInflater;
+    public static String text;
+
     public final Calendar c = Calendar.getInstance();
     public final int mYear = c.get(Calendar.YEAR); // current year
     public final int mMonth = c.get(Calendar.MONTH); // current month
@@ -61,6 +63,7 @@ public class StatisticsSliderAdapter extends PagerAdapter {
         Integer allActivities;
         double completed;
         int d;
+        text=LoginActivity.id;
 
         TextView txt1=(TextView)view.findViewById(R.id.heading1);
         TextView txt2=(TextView)view.findViewById(R.id.heading2);
@@ -69,8 +72,8 @@ public class StatisticsSliderAdapter extends PagerAdapter {
         SqliteHelper db = new SqliteHelper(view.getContext());
         switch (position){
             case 0:
-                completedActivities=db.CountActivities("1");
-                incompletedActivities=db.CountActivities("0");
+                completedActivities=db.CountActivities("1",text);
+                incompletedActivities=db.CountActivities("0",text);
                 allActivities=completedActivities+incompletedActivities;
                 completed=((double)completedActivities/allActivities)*100;
                 d=(int)completed;
@@ -81,8 +84,8 @@ public class StatisticsSliderAdapter extends PagerAdapter {
                 txt3.setText("You have a total of " + incompletedActivities+" left to complete!");
                 break;
             case 1:
-                completedActivities=db.CountActivities(date,"1");
-                incompletedActivities=db.CountActivities(date,"0");
+                completedActivities=db.CountActivities(date,"1",text);
+                incompletedActivities=db.CountActivities(date,"0",text);
                 allActivities=completedActivities+incompletedActivities;
                 completed=((double)completedActivities/allActivities)*100;
                 d=(int)completed;
@@ -93,8 +96,8 @@ public class StatisticsSliderAdapter extends PagerAdapter {
                 txt3.setText("You have " + incompletedActivities+" left to complete today!");
                 break;
             case 2:
-                completedActivities=db.CountActivities(monthYear,"1");
-                incompletedActivities=db.CountActivities(monthYear,"0");
+                completedActivities=db.CountActivitiesByMonth(monthYear,"1",text);
+                incompletedActivities=db.CountActivitiesByMonth(monthYear,"0",text);
                 allActivities=completedActivities+incompletedActivities;
                 completed=((double)completedActivities/allActivities)*100;
                 d=(int)completed;

@@ -20,7 +20,7 @@ import java.util.List;
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
-    public static final String DATABASE_NAME = "registerdata1.db";
+    public static final String DATABASE_NAME = "registerdatafinal.db";
 
     //DATABASE VERSION
     public static final int DATABASE_VERSION = 2;
@@ -306,19 +306,20 @@ public class SqliteHelper extends SQLiteOpenHelper {
     }
 
 
-    public int CountActivities(String query, String status){
+    public int CountActivities(String query, String status,String id){
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
                 KEY_ACTIVITY,
                 KEY_DATE,
                 KEY_TIME,
-                KEY_STATUS
+                KEY_STATUS,
+                KEY_ID1
         };
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_DATE+" = ? AND "+KEY_STATUS+" =?",
-                new String[] {query, status},
+                KEY_DATE+" = ? AND "+KEY_STATUS+" =? AND "+KEY_ID1+" =?",
+                new String[] {query, status,id},
                 null,
                 null,
                 null);
@@ -328,19 +329,20 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
     }
 
-    public int CountActivities(String status){
+    public int CountActivities(String status,String id){
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
                 KEY_ACTIVITY,
                 KEY_DATE,
                 KEY_TIME,
-                KEY_STATUS
+                KEY_STATUS,
+                KEY_ID1
         };
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_STATUS+" =?",
-                new String[] {status},
+                KEY_STATUS+" =? AND "+KEY_ID1+" =?",
+                new String[] {status,id},
                 null,
                 null,
                 null);
@@ -485,19 +487,20 @@ public class SqliteHelper extends SQLiteOpenHelper {
         // return user list
         return addActivityvaluesList;
     }
-    public int CountActivitiesByMonth(String query, String status){
+    public int CountActivitiesByMonth(String query, String status,String id){
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
                 KEY_ACTIVITY,
                 KEY_DATE,
                 KEY_TIME,
-                KEY_STATUS
+                KEY_STATUS,
+                KEY_ID1
         };
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_DATE+" LIKE ? AND "+KEY_STATUS+" = ?",
-                new String[] {"%"+query, status},
+                KEY_DATE+" LIKE ? AND "+KEY_STATUS+" = ? AND "+KEY_ID1+" =?",
+                new String[] {"%"+query, status,id},
                 null,
                 null,
                 null);
