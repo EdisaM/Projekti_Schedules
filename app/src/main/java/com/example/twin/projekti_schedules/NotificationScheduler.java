@@ -10,12 +10,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import static android.content.Context.ALARM_SERVICE;
 
@@ -93,7 +91,7 @@ public class NotificationScheduler
     }
 
 
-    public static void setReminder(Context context, Class<?> cls, int hour,int min)
+    public static void setReminder(Context context,Class<?> cls,int hour, int min)
     {
         Calendar calendar = Calendar.getInstance();
 

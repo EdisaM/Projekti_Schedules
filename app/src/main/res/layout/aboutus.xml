@@ -16,20 +16,8 @@
       app:titleTextColor="@android:color/white"
       android:background="@color/colorPrimary" />
 
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="295dp"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentStart="true"
-
-      android:text="BeProductive is a simple scheduling application to help people be more productive in their everyday life.
-//qekjo palidhje veq..      Included are the statistics of your progress and some motivational quotes, however there is much more to come in the near future!
-
-Developed by: Edisa*Diellza
-All feedback is appreciated: www.somewebsite.com"
-      android:textSize="20dp" />
-
   <LinearLayout
+      android:id="@+id/linearlayout6"
       android:layout_width="match_parent"
       android:layout_height="196dp"
       android:layout_alignParentStart="true"
@@ -46,6 +34,19 @@ All feedback is appreciated: www.somewebsite.com"
 
   </LinearLayout>
 
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="295dp"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentStart="false"
+
+      android:layout_below="@+id/linearlayout6"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:paddingTop="20dp"
+      android:text="BeProductive is a simple scheduling application to help people be more productive in their everyday life. Included are the statistics of your progress and some motivational quotes, however there is much more to come in the near future! Developed by: Edisa*Diellza. All feedback is appreciated: www.somewebsite.com"
+      android:textAlignment="center"
+      android:textSize="20dp" />
 
 
 </RelativeLayout>

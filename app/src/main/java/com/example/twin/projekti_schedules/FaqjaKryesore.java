@@ -192,10 +192,12 @@ public class FaqjaKryesore extends AppCompatActivity {
                         case 0:
                         intent=new Intent(FaqjaKryesore.this, AddActivity.class);
                         startActivity(intent);
+                        finish();
                         break;
                         case 1:
                             intent=new Intent(FaqjaKryesore.this, ViewActivity.class);
                             startActivity(intent);
+                            finish();
                             break;
                     }
                 }
