@@ -1,6 +1,7 @@
 package com.example.twin.projekti_schedules;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -19,7 +20,7 @@ import java.util.List;
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
-    public static final String DATABASE_NAME = "registerdata2.db";
+    public static final String DATABASE_NAME = "registerdata1.db";
 
     //DATABASE VERSION
     public static final int DATABASE_VERSION = 2;
@@ -58,6 +59,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
     //status
     public static final String KEY_STATUS="status";
 
+    public static final String KEY_ID1="email";
+
     public static final String KEY_ID_CHECK="idCheck";
     public static final Integer KEY_CHECK=0;
     public static final String TABLE_CHECK="check";
@@ -68,9 +71,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
     //SQL for creating users table
     public static final String SQL_TABLE_USERS = " CREATE TABLE " + TABLE_USERS
             + " ( "
-            + KEY_ID + " INTEGER PRIMARY KEY, "
+            + KEY_ID + " INTEGER, "
             + KEY_USER_NAME + " TEXT, "
-            + KEY_EMAIL + " TEXT, "
+            + KEY_EMAIL + " TEXT PRIMARY KEY, "
             + KEY_PASSWORD + " TEXT"
             + " ) ";
     public static final String SQL_TABLE_ACTIVITY = " CREATE TABLE " + TABLE_ACTIVITY
@@ -80,7 +83,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
             + KEY_ACTIVITY + " TEXT, "
             + KEY_DATE + " TEXT, "
             + KEY_TIME + " TEXT, "
-            + KEY_STATUS + " TEXT"
+            + KEY_STATUS + " TEXT,"
+            +KEY_ID1 + " TEXT,"
+    +" FOREIGN KEY("+KEY_ID1+") REFERENCES TABLE_USERS("+KEY_EMAIL+")"
             + " ) ";
 
 
@@ -151,6 +156,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return null;
     }
 
+
     public boolean isEmailExists(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS,// Selecting Table
@@ -175,6 +181,11 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void delete_user (String password,String email)
     {
         this.getWritableDatabase().execSQL("DELETE FROM " +TABLE_USERS+" WHERE "+KEY_PASSWORD+"='"+password+"' AND "+KEY_EMAIL+"='"+email+"'" );
+    }
+
+    public void delete_activity (String name,String date)
+    {
+        this.getWritableDatabase().execSQL("DELETE FROM " +TABLE_ACTIVITY+" WHERE "+KEY_DATE+"='"+date+"' AND "+KEY_ACTIVITY+"='"+name+"'" );
     }
 
     public boolean checkUser(String email){
@@ -249,37 +260,49 @@ public class SqliteHelper extends SQLiteOpenHelper {
         values.put(KEY_DATE, addActivityvalues.getDate());
         values.put(KEY_TIME, addActivityvalues.getTime());
         values.put(KEY_STATUS, addActivityvalues.getStatus());
+        values.put(KEY_ID1,addActivityvalues.getID());
 
         db.insert(TABLE_ACTIVITY, null, values);
         db.close();
     }
 
-    public void updateActivities(String status, String activity, String type, String date, String time){
+    public void updateActivities (String status, String activity, String type, String date, String time){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_STATUS, status);
         db.update(TABLE_ACTIVITY, values, KEY_ACTIVITY+" = ? AND "+ KEY_ACTIVITY_TYPE+" = ? AND "+KEY_DATE+" = ? AND "+KEY_TIME+" = ?",new String[] { activity, type, date, time });
         db.close();
     }
-    public int CountActivities(String status){
-        String[] columns = {
-                KEY_ACTIVITY_TYPE,
-                KEY_ACTIVITY,
-                KEY_DATE,
-                KEY_TIME,
-                KEY_STATUS
-        };
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
-                columns,    //columns to return
-                KEY_STATUS+" =?",
-                new String[] {status},
-                null,
-                null,
-                null);
+    public void deleteActivity (String name,String date,String time)
+    {
+        this.getWritableDatabase().execSQL("DELETE FROM "+TABLE_ACTIVITY+" WHERE "+KEY_TIME+"='"+time+"' AND "+KEY_DATE+"='"+date+"' AND "+KEY_ACTIVITY+"='"+name+"'" );
+    }
 
-        int count=cursor.getCount();
-        return count;
+
+    public String GetUserID(String emailId)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("SELECT "+KEY_EMAIL+" FROM "+TABLE_USERS+" WHERE "+KEY_EMAIL+"='"+emailId+"'");
+        return emailId;
+    }
+
+
+
+
+
+    public void update_time (String newTime, String newDate, String oldDate , String oldTime,  String name )
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_TIME, newTime);
+        values.put(KEY_DATE, newDate);
+        db.update(TABLE_ACTIVITY, values, KEY_ACTIVITY+" = ? AND "+KEY_DATE+" = ? AND "+KEY_TIME+" = ?",new String[] {name, oldDate, oldTime });
+        db.close();
+    }
+
+    public void update_date (String oldDate , String newDate,String oldTime,String newTime,String name )
+    {
+        this.getWritableDatabase().execSQL("UPDATE " +TABLE_ACTIVITY+" SET "+KEY_TIME+"='"+newTime+"' AND "+KEY_DATE+"='"+newDate+"' WHERE "+KEY_TIME+"='"+oldTime+"' AND "+KEY_DATE+"='"+oldDate+"' AND "+KEY_ACTIVITY+"='"+name+"'" );
     }
 
 
@@ -305,14 +328,38 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
     }
 
-    public List<AddActivity_values> getAllActivities(String status) {
-        // array of columns to fetch
+    public int CountActivities(String status){
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
                 KEY_ACTIVITY,
                 KEY_DATE,
                 KEY_TIME,
                 KEY_STATUS
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
+                columns,    //columns to return
+                KEY_STATUS+" =?",
+                new String[] {status},
+                null,
+                null,
+                null);
+
+        int count=cursor.getCount();
+        return count;
+    }
+
+
+    public List<AddActivity_values> getAllActivities(String status,String id) {
+        // array of columns to fetch
+        String[] columns = {
+                KEY_ACTIVITY_TYPE,
+                KEY_ACTIVITY,
+                KEY_DATE,
+                KEY_TIME,
+                KEY_STATUS,
+                KEY_ID1
+
         };
         // sorting orders
         List<AddActivity_values> addActivityvaluesList = new ArrayList<AddActivity_values>();
@@ -322,8 +369,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_STATUS+"= ?",        //columns for the WHERE clause
-                new String[] {status},        //The values for the WHERE clause
+                KEY_STATUS+"= ? AND "+KEY_ID1+" =?",        //columns for the WHERE clause
+                new String[] {status,id},        //The values for the WHERE clause
                 null,       //group the rows
                 null,       //filter by row groups
                KEY_DATE); //The sort order
@@ -337,6 +384,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 addActivityvalues.setActivity(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY)));
                 addActivityvalues.setDate(cursor.getString(cursor.getColumnIndex(KEY_DATE)));
                 addActivityvalues.setTime(cursor.getString(cursor.getColumnIndex(KEY_TIME)));
+                addActivityvalues.setID(cursor.getString(cursor.getColumnIndex(KEY_ID1)));
                 // Adding user record to list
                 addActivityvaluesList.add(addActivityvalues);
             } while (cursor.moveToNext());
@@ -348,14 +396,15 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return addActivityvaluesList;
     }
 
-    public List<AddActivity_values> getFilteredActivities(String filter,String status) {
+    public List<AddActivity_values> getFilteredActivities(String filter,String status,String id) {
         // array of columns to fetch
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
                 KEY_ACTIVITY,
                 KEY_DATE,
                 KEY_TIME,
-                KEY_STATUS
+                KEY_STATUS,
+                KEY_ID1
         };
         // sorting orders
         List<AddActivity_values> addActivityvaluesList = new ArrayList<AddActivity_values>();
@@ -365,8 +414,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_DATE+" = ? AND "+KEY_STATUS+" = ?",
-                new String[] {filter, status},
+                KEY_DATE+" = ? AND "+KEY_STATUS+" = ? AND "+KEY_ID1+" =?",
+                new String[] {filter, status,id},
                 null,
                 null,
                 null);
@@ -380,6 +429,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 addActivityvalues.setActivity(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY)));
                 addActivityvalues.setDate(cursor.getString(cursor.getColumnIndex(KEY_DATE)));
                 addActivityvalues.setTime(cursor.getString(cursor.getColumnIndex(KEY_TIME)));
+                addActivityvalues.setID(cursor.getString(cursor.getColumnIndex(KEY_ID1)));
                 // Adding user record to list
                 addActivityvaluesList.add(addActivityvalues);
             } while (cursor.moveToNext());
@@ -391,14 +441,15 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return addActivityvaluesList;
     }
 
-    public List<AddActivity_values> getFilteredActivitiesByMonth(String filter, String status) {
+    public List<AddActivity_values> getFilteredActivitiesByMonth(String filter, String status ,String id) {
         // array of columns to fetch
         String[] columns = {
                 KEY_ACTIVITY_TYPE,
                 KEY_ACTIVITY,
                 KEY_DATE,
                 KEY_TIME,
-                KEY_STATUS
+                KEY_STATUS,
+                KEY_ID1
         };
         // sorting orders
         List<AddActivity_values> addActivityvaluesList = new ArrayList<AddActivity_values>();
@@ -408,8 +459,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_ACTIVITY, //Table to query
                 columns,    //columns to return
-                KEY_DATE+" LIKE ? AND "+ KEY_STATUS+" = ?",
-                new String[] {"%"+filter,status},
+                KEY_DATE+" LIKE ? AND "+ KEY_STATUS+" = ? AND "+ KEY_ID1+" = ?",
+                new String[] {"%"+filter,status,id},
                 null,
                 null,
                 null);
@@ -423,6 +474,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 addActivityvalues.setActivity(cursor.getString(cursor.getColumnIndex(KEY_ACTIVITY)));
                 addActivityvalues.setDate(cursor.getString(cursor.getColumnIndex(KEY_DATE)));
                 addActivityvalues.setTime(cursor.getString(cursor.getColumnIndex(KEY_TIME)));
+                addActivityvalues.setID(cursor.getString(cursor.getColumnIndex(KEY_ID1)));
                 // Adding user record to list
                 addActivityvaluesList.add(addActivityvalues);
             } while (cursor.moveToNext());

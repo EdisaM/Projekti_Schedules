@@ -10,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CompletedActivity extends AppCompatActivity {
+public class CompletedActivity extends AppCompatActivity  {
     public ImageView img;
     public TextView activity2;
     public TextView date;
     public TextView time;
     public Button btn1;
+    public Button btn2;
     SqliteHelper db;
 
     @Override
@@ -28,6 +29,7 @@ public class CompletedActivity extends AppCompatActivity {
         date=(TextView)findViewById(R.id.txt2);
         time=(TextView)findViewById(R.id.txt3);
         btn1=(Button)findViewById(R.id.btnUpdate1);
+        btn2=(Button)findViewById(R.id.btnUpdate2);
 
 
         //placing toolbar in place of actionbar
@@ -39,7 +41,7 @@ public class CompletedActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MenuActivity.class));
+                startActivity(new Intent(getApplicationContext(),ViewActivity.class));
                 finish();
             }
         });
@@ -71,12 +73,19 @@ public class CompletedActivity extends AppCompatActivity {
         date.setText(date1);
         time.setText(time1);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+        btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SqliteHelper db=new SqliteHelper(CompletedActivity.this);
-                db.updateActivities("1", activity1, activityType, date1, time1);
+                db.delete_activity(activity1,date1);
 
+            }
+        });
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ChangeDateTime alert = new ChangeDateTime();
+                alert.showDialog(CompletedActivity.this,activity1, date1, time1);
             }
         });
 

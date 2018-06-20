@@ -99,8 +99,9 @@ public class DeleteAccount extends AppCompatActivity {
                 else{
 
 
-                    AlertDialog alertDialog = new AlertDialog.Builder(
-                            DeleteAccount.this).create();
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(DeleteAccount.this);
+
+
 
                     // Setting Dialog Title
                     alertDialog.setTitle("Change password alert");
@@ -112,7 +113,7 @@ public class DeleteAccount extends AppCompatActivity {
                     alertDialog.setIcon(R.drawable.selected);
 
                     // Setting OK Button
-                    alertDialog.setButton("Yes", new DialogInterface.OnClickListener() {
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             deleteacc = new
                                     SqliteHelper(getApplicationContext());
@@ -123,15 +124,17 @@ public class DeleteAccount extends AppCompatActivity {
                             PreferenceUtils.savePassword(null, DeleteAccount.this);
                             PreferenceUtils.saveEmail(null, DeleteAccount.this);
                             Intent intent1 = new Intent(DeleteAccount.this, LoginActivity.class);
+                            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent1);
                             finish();
 
 
                         }
                     });
-                    alertDialog.setButton("No",new DialogInterface.OnClickListener() {
+                    alertDialog.setNegativeButton("No",new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             startActivity(new Intent(getApplicationContext(),DeleteAccount.class));
+                            dialog.dismiss();
 
                         }});
 

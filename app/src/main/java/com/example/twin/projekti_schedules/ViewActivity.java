@@ -42,6 +42,7 @@ public class ViewActivity extends AppCompatActivity {
     public String activitytype;
     public String date;
     public String time;
+    public String text;
 
     public final Calendar c = Calendar.getInstance();
     public final int mYear = c.get(Calendar.YEAR); // current year
@@ -67,7 +68,7 @@ public class ViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        text = MenuActivity.getString();
         //placing toolbar in place of actionbar
 
 
@@ -113,7 +114,7 @@ public class ViewActivity extends AppCompatActivity {
                                 String date = mDay + "/" + Month + "/" + mYear;
                                 if (databaseHelper.CountActivities(date, "0") > 0) {
                                     listAddActivityvalues.clear();
-                                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date, "0"));
+                                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date, "0",text));
 
                                 }
                                 else {
@@ -125,7 +126,7 @@ public class ViewActivity extends AppCompatActivity {
                         break;
                     case 1:
                         listAddActivityvalues.clear();
-                        listAddActivityvalues.addAll(databaseHelper.getAllActivities("0"));
+                        listAddActivityvalues.addAll(databaseHelper.getAllActivities("0",text));
                         Toast.makeText(ViewActivity.this, "You are now seeing all activities", Toast.LENGTH_SHORT).show();
                         activitiesRecyclerAdapter.notifyDataSetChanged();
                         break;
@@ -134,7 +135,7 @@ public class ViewActivity extends AppCompatActivity {
                         if(databaseHelper.CountActivitiesByMonth(monthYear, "0")>0) {
 
                             listAddActivityvalues.clear();
-                            listAddActivityvalues.addAll(databaseHelper.getFilteredActivitiesByMonth(monthYear, "0"));
+                            listAddActivityvalues.addAll(databaseHelper.getFilteredActivitiesByMonth(monthYear, "0",text));
                             Toast.makeText(ViewActivity.this, "All activities for this month. ", Toast.LENGTH_SHORT).show();
                             activitiesRecyclerAdapter.notifyDataSetChanged();
                         }
@@ -170,7 +171,7 @@ public class ViewActivity extends AppCompatActivity {
 
                 if(databaseHelper.CountActivities(query.toString().trim(), "0")>0){
                     listAddActivityvalues.clear();
-                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(query.toString().trim(), "0"));
+                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(query.toString().trim(), "0",text));
                     Toast.makeText(ViewActivity.this, "You have "+databaseHelper.CountActivities(query.toString().trim(),"0")+" activities in "+query, Toast.LENGTH_LONG).show();
 
 
@@ -180,7 +181,7 @@ public class ViewActivity extends AppCompatActivity {
 
             } else{
                     listAddActivityvalues.clear();
-                    listAddActivityvalues.addAll(databaseHelper.getAllActivities("0"));
+                    listAddActivityvalues.addAll(databaseHelper.getAllActivities("0",text));
 
                 }
                 return true;
@@ -228,7 +229,7 @@ public class ViewActivity extends AppCompatActivity {
                 String date = mDay + "/" + Month + "/" + mYear;
                 if (databaseHelper.CountActivities(date, "0") > 0) {
                     listAddActivityvalues.clear();
-                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date, "0"));
+                    listAddActivityvalues.addAll(databaseHelper.getFilteredActivities(date, "0",text));
 
                 }
                 return null;

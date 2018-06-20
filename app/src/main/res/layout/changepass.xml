@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="50dp"
-        android:background="#79d9cc85"
+        android:background="#79f4f4ed"
         android:gravity="fill_vertical"
         android:orientation="vertical">
 

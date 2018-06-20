@@ -42,7 +42,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/task"
-                android:background="#779379"
+                android:background="#ead796"
                 android:orientation="vertical"
                 android:weightSum="3">
 

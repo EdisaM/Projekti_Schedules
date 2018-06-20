@@ -1,7 +1,9 @@
 package com.example.twin.projekti_schedules;
 
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.NestedScrollView;
@@ -41,6 +43,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private TextInputEditText date;
     private TextInputEditText activity;
     private TextInputEditText time;
+    //public String s;
+
+
+    public PendingIntent pendingIntent;
+    public String text;
 
     private AppCompatButton buttonAdd;
     private AppCompatTextView textViewList;
@@ -57,6 +64,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     String activityType;
 
 
+
+
     private static final String TAG = "AddActivity";
 
     @Override
@@ -66,7 +75,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         initViews();
         initObjects();
         initListeners();
+       // s=LoginActivity.id;
+
         final LocalData localData = new LocalData(getApplicationContext());
+
 
 
 
@@ -81,9 +93,16 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),MenuActivity.class));
+
                 finish();
             }
         });
+
+
+
+
+        Intent alarmIntent = new Intent(AddActivity.this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(AddActivity.this, 0, alarmIntent, 0);
 
         ArrayList<ItemData> lista=new ArrayList<>();
         lista.add(new ItemData("Select activity type:",R.mipmap.add));
@@ -142,9 +161,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         localData.set_min(selectedMinute);
 
                         time.setText(selectedHour + ":" + selectedMinute);
-                        NotificationScheduler.setReminder(AddActivity.this,AlarmReceiver.class,
+                        //NotificationScheduler.setRemindertime(AddActivity.this,AlarmReceiver.class,
 
-                                localData.get_hour(),localData.get_min());
+//                                localData.get_hour(),localData.get_min());
 
 
 
@@ -157,9 +176,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         });
         int selectedHour=localData.get_hour();
         int selectedMinute=localData.get_min();
-        NotificationScheduler.setReminder(AddActivity.this,AlarmReceiver.class,
+       // NotificationScheduler.setReminder(AddActivity.this,AlarmReceiver.class,
 
-                localData.get_hour(),localData.get_min());
+             //   localData.get_hour(),localData.get_min());
 
 
 
@@ -183,9 +202,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                                 // set day of month , month and year value in the edit text
                                 date.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
-                                NotificationScheduler.setReminderdate(AddActivity.this,AlarmReceiver.class,
+                               // NotificationScheduler.setReminderdate(AddActivity.this,AlarmReceiver.class,
 
-                                        localData.get_day(),localData.get_month(),localData.get_year());
+                                    //    localData.get_day(),localData.get_month(),localData.get_year());
 
 
 
@@ -237,30 +256,51 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.btnadd:
+
+
+
                 postDataToSQLite();
                 break;
         }
     }
     private void postDataToSQLite() {
-
+            text = MenuActivity.getString();
 
             addActivityvalues.setActivityType(activityType.trim());
             addActivityvalues.setActivity(activity.getText().toString().trim());
             addActivityvalues.setDate(date.getText().toString().trim());
             addActivityvalues.setTime(time.getText().toString().trim());
             addActivityvalues.setStatus("0");
+            addActivityvalues.setID(text);
 
 
             sqliteHelper.addActivities(addActivityvalues);
             // Snack Bar to show success message that record saved successfully
             Intent intent_view = new Intent(this, ViewActivity.class);
+            intent_view.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             Toast.makeText(this, "Activity added successfully!", Toast.LENGTH_SHORT)
                     .show();
 
-           startActivity(intent_view);
+
+            startActivity(intent_view);
 
 
         }
+
+    public void start() {
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        int interval = 1000 * 60 * 20;
+
+        /* Set the alarm to start at 10:30 AM */
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 37);
+
+        /* Repeating on every 20 minutes interval */
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                1000 * 60 * 20, pendingIntent);
+    }
 
 
 

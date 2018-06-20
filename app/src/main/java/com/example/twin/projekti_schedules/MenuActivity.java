@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuActivity extends FaqjaKryesore {
 
@@ -18,8 +19,7 @@ public class MenuActivity extends FaqjaKryesore {
     TextView title;
     public static ImageView menuButton;
     public static FragmentTransaction fragmentTransaction;
-
-
+    public static String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,9 @@ public class MenuActivity extends FaqjaKryesore {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
          isFragmentLoaded=false;
+        Intent intent = getIntent();
+         text = intent.getStringExtra("intent");
+
 
 
 
@@ -78,5 +81,8 @@ public class MenuActivity extends FaqjaKryesore {
 
 
         isFragmentLoaded = true;
+    }
+    public static String getString(){
+        return text;
     }
 }

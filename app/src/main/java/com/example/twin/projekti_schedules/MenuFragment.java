@@ -54,8 +54,8 @@ public class MenuFragment extends Fragment implements View.OnTouchListener {
         task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent i = new Intent(MenuActivity.this,.class);
-                //startActivity(i);
+                Intent i = new Intent(getActivity(),ViewActivity.class);
+                startActivity(i);
             }
         });
         motication.setOnClickListener(new View.OnClickListener() {

@@ -11,6 +11,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //Declaration Button
     Button buttonLogin;
+    public static String id;
 
     //Declaration SqliteHelper
     SqliteHelper sqliteHelper;
@@ -83,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                     String Email = editTextEmail.getText().toString();
                     String Password = editTextPassword.getText().toString();
 
+
                     //Authenticate user
                     User currentUser = sqliteHelper.Authenticate(new User(null, null, Email, Password));
 
@@ -91,11 +94,16 @@ public class LoginActivity extends AppCompatActivity {
                     if (currentUser != null) {
                         Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
                         //SharedPreferences.Editor editor = sharedpreferences.edit();
+                       // id=editTextEmail.getText().toString().trim();
 
                        Intent intent=new Intent(LoginActivity.this,MenuActivity.class);
+
+                        intent.putExtra("intent",Email);
+                        //intent.putExtra("EXTRA_SESSION_ID", id);
                         startActivity(intent);
-                        emptyInputEditText();
+                        //emptyInputEditText();
                         finish();
+
 
 
                     } else {
@@ -105,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
 
-                    finish();
+                   // finish();
                 }
             }
         });

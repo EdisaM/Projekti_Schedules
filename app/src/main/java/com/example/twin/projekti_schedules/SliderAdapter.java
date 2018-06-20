@@ -28,7 +28,7 @@ public class SliderAdapter extends PagerAdapter {
 
     public int[] slide_images={
             R.mipmap.add,
-            R.mipmap.schedule
+            R.mipmap.calendar
 
     };
     public String[] slide_headings={

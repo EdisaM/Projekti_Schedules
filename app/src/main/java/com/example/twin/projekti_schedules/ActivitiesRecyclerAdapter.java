@@ -1,5 +1,4 @@
 package com.example.twin.projekti_schedules;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -156,5 +155,4 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
     }
 
 
-    }
-
+}

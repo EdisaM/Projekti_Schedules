@@ -97,8 +97,9 @@ public class ChangePassword extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), header, Toast.LENGTH_LONG).show();
                 }
                 else{
-                    AlertDialog alertDialog = new AlertDialog.Builder(
-                            ChangePassword.this).create();
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(ChangePassword.this);
+
+
 
                     // Setting Dialog Title
                     alertDialog.setTitle("Change password alert");
@@ -107,11 +108,11 @@ public class ChangePassword extends AppCompatActivity {
                     alertDialog.setMessage("Are you sure to change your password?");
 
                     // Setting Icon to Dialog
-                    alertDialog.setIcon(R.drawable.selected);
+                    alertDialog.setIcon(R.drawable.changep);
 
-                    // Setting OK Button
-                    alertDialog.setButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int which) {
+
                             update_user = new
                                     SqliteHelper(getApplicationContext());
 
@@ -123,12 +124,14 @@ public class ChangePassword extends AppCompatActivity {
                             Intent intent1 = new Intent(ChangePassword.this, LoginActivity.class);
                             startActivity(intent1);
                             finish();
+
                             ChangePassword.this.finish();
                         }
                     });
-                    alertDialog.setButton("No",new DialogInterface.OnClickListener() {
+                    alertDialog.setNegativeButton("No",new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             startActivity(new Intent(getApplicationContext(),ChangePassword.class));
+                            dialog.dismiss();
 
                         }});
 

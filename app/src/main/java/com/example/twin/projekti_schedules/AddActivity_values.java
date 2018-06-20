@@ -42,6 +42,13 @@ public class AddActivity_values {
     public void setTime(String time) {
         this.time = time;
     }
+    public String getID() {
+        return id;
+    }
+
+    public void setID(String id) {
+        this.id = id;
+    }
 
     public String getStatus() {
         return status;
@@ -56,6 +63,7 @@ public class AddActivity_values {
     public String date;
     public String time;
     public String status;
+    public String id;
 
     public boolean isSelected() {
         return isSelected;
@@ -67,13 +75,14 @@ public class AddActivity_values {
 
     public boolean isSelected;
 
-    public AddActivity_values(String activityType, String activity, String date, String time, String status) {
+    public AddActivity_values(String activityType, String activity, String date, String time, String status,String id) {
 
         this.activityType = activityType;
         this.activity = activity;
         this.date = date;
         this.time = time;
         this.status = status;
+        this.id=id;
     }
 }
 

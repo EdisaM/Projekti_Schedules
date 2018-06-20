@@ -34,8 +34,22 @@
         <activity android:name=".CompletedActivity"></activity>
         <activity android:name=".StaticticsActivity"></activity>
         <activity android:name=".motivation" />
-        <receiver android:name=".AlarmReceiver"></receiver>
+
         <activity android:name=".FaqjaKryesore" />
+
+        <receiver android:name=".AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Will not be called unless the application explicitly enables it -->
+        <receiver android:name=".DeviceBootReceiver"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
         <activity android:name=".ViewActivity"></activity>
     </application>
 
