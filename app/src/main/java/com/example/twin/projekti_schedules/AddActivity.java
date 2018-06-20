@@ -161,9 +161,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         localData.set_min(selectedMinute);
 
                         time.setText(selectedHour + ":" + selectedMinute);
-                        NotificationScheduler.setRemindertime(AddActivity.this,AlarmReceiver.class,
+                        //NotificationScheduler.setRemindertime(AddActivity.this,AlarmReceiver.class,
 
-                               localData.get_hour(),localData.get_min());
+                              // localData.get_hour(),localData.get_min());
 
 
 

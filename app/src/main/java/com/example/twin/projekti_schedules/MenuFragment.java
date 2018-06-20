@@ -15,9 +15,6 @@ import android.widget.LinearLayout;
 
 import static com.example.twin.projekti_schedules.MenuActivity.menuFragment;
 
-/**
- * Created by Admin on 31-05-2017.
- */
 
 public class MenuFragment extends Fragment implements View.OnTouchListener {
     public static boolean fragment=MenuActivity.isFragmentLoaded;

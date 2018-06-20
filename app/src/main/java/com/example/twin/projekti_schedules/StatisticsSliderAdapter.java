@@ -16,9 +16,6 @@ import com.emredavarci.circleprogressbar.CircleProgressBar;
 
 import java.util.Calendar;
 
-/**
- * Created by Edisa on 6/18/2018.
- */
 
 public class StatisticsSliderAdapter extends PagerAdapter {
     Context context;

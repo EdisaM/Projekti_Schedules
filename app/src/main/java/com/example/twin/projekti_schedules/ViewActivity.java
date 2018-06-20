@@ -68,15 +68,14 @@ public class ViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //text = MenuActivity.getString();
-        //placing toolbar in place of actionbar
         text= LoginActivity.id;
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar3);
 
-
+        //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +85,9 @@ public class ViewActivity extends AppCompatActivity {
             }
         });
 
-       // Toast.makeText(ViewActivity.this, "There are no activities for today "+text, Toast.LENGTH_LONG).show();
+
+
+        // Toast.makeText(ViewActivity.this, "There are no activities for today "+text, Toast.LENGTH_LONG).show();
 
 
 
