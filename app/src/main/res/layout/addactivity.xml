@@ -86,8 +86,8 @@
                 android:layout_alignParentLeft="true"
                 android:hint="Select Date..."
                 android:padding="15dp"
-                android:textColor="@color/colorPrimary"
-                android:textColorHint="@color/colorPrimary"
+                android:textColor="#efb54a"
+                android:textColorHint="#efb54a"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </android.support.design.widget.TextInputLayout>
@@ -101,7 +101,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="101dp"
             android:layout_marginTop="20dp"
-            android:background="@color/colorPrimary"
+            android:background="#efb54a"
             android:text="ADD"
             android:textColor="@android:color/white"
             android:visibility="visible" />

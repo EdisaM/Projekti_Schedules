@@ -34,6 +34,22 @@ public class StaticticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statictics);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar5);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MenuActivity.class));
+                finish();
+            }
+        });
+
+
+        //
         slide=(ViewPager)findViewById(R.id.ViewPager);
         l1 = (LinearLayout) findViewById(R.id.linearLayout1);
         adapter = new StatisticsSliderAdapter(this);

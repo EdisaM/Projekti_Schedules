@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<color name="colorPrimary">#7fdaa8</color>
-<color name="colorPrimaryDark">#519f71</color>
-<color name="colorAccent">#74fa960a</color>
+    <color name="colorPrimary">#7fdaa8</color>
+    <color name="colorPrimaryDark">#519f71</color>
+    <color name="colorAccent">#74fa960a</color>
     <color name="colorText">#ffffff</color>
     <color name="colorToggle">#75bf91</color>
-<color name="lightGrey">#f0f0f0</color>
+    <color name="lightGrey">#f0f0f0</color>
     <color name="color1">#ece994</color>
     <color name="color2">#a8a9a7</color>
     <color name="task">#728a74</color>
