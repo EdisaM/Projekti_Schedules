@@ -44,32 +44,6 @@ public class ChangeDateTime {
         final EditText etTime=(EditText)dialog.findViewById(R.id.etTime);
 
 
-
-
-
-        etTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-                final TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(activity.getApplicationContext(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-
-                        etTime.setText(selectedHour + ":" + selectedMinute);
-
-                    }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
-
-            }
-        });
-
-
-
         Button dialogButton = (Button) dialog.findViewById(R.id.btnchng);
         Button dialog1Button = (Button) dialog.findViewById(R.id.buttoncancel);
         dialogButton.setOnClickListener(new View.OnClickListener() {

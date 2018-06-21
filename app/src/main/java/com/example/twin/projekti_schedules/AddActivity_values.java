@@ -1,8 +1,5 @@
 package com.example.twin.projekti_schedules;
 
-/**
- * Created by Edisa on 6/9/2018.
- */
 
 public class AddActivity_values {
 

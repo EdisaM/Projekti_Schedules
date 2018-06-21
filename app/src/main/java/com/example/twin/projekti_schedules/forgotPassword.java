@@ -11,13 +11,6 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.Toast;
 
-//import com.delaroystudios.sqlitelogin.R;
-//import com.delaroystudios.sqlitelogin.helper.InputValidation;
-//import com.delaroystudios.sqlitelogin.sql.DatabaseHelper;
-
-/**
- * Created by delaroy on 3/3/18.
- */
 
 public class forgotPassword extends AppCompatActivity {
 

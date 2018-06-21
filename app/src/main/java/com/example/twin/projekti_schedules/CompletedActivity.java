@@ -78,7 +78,7 @@ public class CompletedActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 SqliteHelper db=new SqliteHelper(CompletedActivity.this);
                 db.delete_activity(activity1,date1);
-                Toast.makeText(CompletedActivity.this,"Activity deleted!",Toast.LENGTH_SHORT);
+                Toast.makeText(CompletedActivity.this,"Activity deleted!",Toast.LENGTH_LONG);
                 Intent i=new Intent(CompletedActivity.this,ViewActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(i);

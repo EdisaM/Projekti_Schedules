@@ -25,21 +25,6 @@ public class MenuFragment extends Fragment implements View.OnTouchListener {
         View rootView = inflater.inflate(R.layout.menudesign, container, false);
         LinearLayout root = (LinearLayout) rootView.findViewById(R.id.rootLayout);
 
-        /*gestureDetector=new GestureDetector(getActivity(),new OnSwipeListener(){
-            @Override
-            public boolean onSwipe(Direction direction) {
-                if (direction==Direction.up){
-                    //do your stuff
-                    ((MainActivity )  getActivity()).hideFragment();
-                }
-                if (direction==Direction.down){
-                    //do your stuff
-                }
-                return true;
-            }
-        });
-        root.setOnTouchListener(this);*/
-
 
 
         LinearLayout task=(LinearLayout)rootView.findViewById(R.id.task);

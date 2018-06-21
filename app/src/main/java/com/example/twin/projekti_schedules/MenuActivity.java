@@ -63,20 +63,6 @@ public class MenuActivity extends FaqjaKryesore {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         title = (TextView) findViewById(R.id.title_top);
         menuButton = (ImageView) findViewById(R.id.menu_icon);
         menuButton.setImageResource(R.drawable.menuico);

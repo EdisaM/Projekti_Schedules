@@ -22,14 +22,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * Created by Edisa on 6/9/2018.
- */
 
 public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRecyclerAdapter.ActivityViewHolder>{
 
     private ArrayList<AddActivity_values> listAddActivityvalues;
-    private ArrayList<AddActivity_values> listAddActivityvalues1;
 
     private Context mContext;
     private ArrayList<AddActivity_values> mFilteredList;
@@ -38,7 +34,6 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
 
     public ActivitiesRecyclerAdapter(ArrayList<AddActivity_values> listAddActivityvalues, Context mContext) {
         this.listAddActivityvalues = listAddActivityvalues;
-        this.listAddActivityvalues1 = listAddActivityvalues;
         this.mContext = mContext;
         this.mFilteredList = listAddActivityvalues;
         this.notifyDataSetChanged();
@@ -75,18 +70,10 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
             l3=(LinearLayout)view.findViewById(R.id.l3);
             btnUpdate=(Button)view.findViewById(R.id.btnUpdate);
 
-
-
-
-
-
         }
 
 
     }
-
-
-
 
     @Override
     public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -101,13 +88,10 @@ public class ActivitiesRecyclerAdapter extends RecyclerView.Adapter<ActivitiesRe
     @Override
     public void onBindViewHolder(final ActivityViewHolder holder, final int position) {
 
-
-
         holder.textViewActivity.setText(listAddActivityvalues.get(position).getActivity());
         holder.textViewType.setText(listAddActivityvalues.get(position).getActivityType());
         holder.textViewDate.setText(listAddActivityvalues.get(position).getDate());
         holder.textViewTime.setText(listAddActivityvalues.get(position).getTime());
-
         final String activityType=holder.textViewType.getText().toString();
         final String activity1=holder.textViewActivity.getText().toString();
         final String date1=holder.textViewDate.getText().toString();

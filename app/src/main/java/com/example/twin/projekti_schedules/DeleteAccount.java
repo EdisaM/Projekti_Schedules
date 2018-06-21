@@ -23,8 +23,8 @@ public class DeleteAccount extends AppCompatActivity {
 
     private Button submitBtn;
 
-    private String emailS;
-    private String pwdS;
+    public String emailS;
+    public String pwdS;
 
 
     private SqliteHelper deleteacc;
@@ -39,8 +39,7 @@ public class DeleteAccount extends AppCompatActivity {
         //final String name=intent2.getStringExtra("name");
         //Log.e("p",name);
 
-
-
+        deleteacc=new SqliteHelper(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
@@ -61,15 +60,14 @@ public class DeleteAccount extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
         emailEdit = (EditText)findViewById(R.id.editText1);
         pwdEdit = (EditText)findViewById(R.id.editText2);
+
+        emailS = emailEdit.getText().toString();
+        pwdS = pwdEdit.getText().toString();
+
+        final User currentUser = deleteacc.Authenticate(new User(null, null, emailS, pwdS));
+
 
 
         submitBtn = (Button)findViewById(R.id.buttonSendKey);
@@ -80,70 +78,59 @@ public class DeleteAccount extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
+                    if (emailS == null ) {
+                        String header = "Email is required";
+                        Toast.makeText(getApplicationContext(), header, Toast.LENGTH_LONG).show();
+                    } else if (pwdS == null) {
+                        String header = "Password is required";
+                        Toast.makeText(getApplicationContext(), header,
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else {
+
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(DeleteAccount.this);
 
 
-                emailS = emailEdit.getText().toString().trim();
-                pwdS = pwdEdit.getText().toString().trim();
+                        // Setting Dialog Title
+                        alertDialog.setTitle("Change password alert");
 
-                if(emailS==null||"".equalsIgnoreCase(emailS)){
-                    String header = "Email is required";
+                        // Setting Dialog Message
+                        alertDialog.setMessage("Are you sure to change your password?");
 
-                    Toast.makeText(getApplicationContext(),header,Toast.LENGTH_LONG).show();
-                }
-                else if(pwdS==null ||"".equalsIgnoreCase(pwdS)){
-                    String header = "Password is required";
-                    Toast.makeText(getApplicationContext(), header,
-                            Toast.LENGTH_LONG).show();
-                }
+                        // Setting Icon to Dialog
+                        alertDialog.setIcon(R.drawable.selected);
 
-                else{
+                        // Setting OK Button
+                        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteacc = new
+                                        SqliteHelper(getApplicationContext());
 
+                                deleteacc.delete_user(pwdS, emailS);
 
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(DeleteAccount.this);
-
-
-
-                    // Setting Dialog Title
-                    alertDialog.setTitle("Change password alert");
-
-                    // Setting Dialog Message
-                    alertDialog.setMessage("Are you sure to change your password?");
-
-                    // Setting Icon to Dialog
-                    alertDialog.setIcon(R.drawable.selected);
-
-                    // Setting OK Button
-                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            deleteacc = new
-                                    SqliteHelper(getApplicationContext());
-
-                            deleteacc.delete_user(pwdS,emailS);
-
-                            // startActivity(intent);
-                            PreferenceUtils.savePassword(null, DeleteAccount.this);
-                            PreferenceUtils.saveEmail(null, DeleteAccount.this);
-                            Intent intent1 = new Intent(DeleteAccount.this, LoginActivity.class);
-                            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent1);
-                            finish();
+                                // startActivity(intent);
+                                PreferenceUtils.savePassword(null, DeleteAccount.this);
+                                PreferenceUtils.saveEmail(null, DeleteAccount.this);
+                                Intent intent1 = new Intent(DeleteAccount.this, LoginActivity.class);
+                                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent1);
+                                finish();
 
 
-                        }
-                    });
-                    alertDialog.setNegativeButton("No",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(getApplicationContext(),DeleteAccount.class));
-                            dialog.dismiss();
+                            }
+                        });
+                        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(getApplicationContext(), DeleteAccount.class));
+                                dialog.dismiss();
 
-                        }});
+                            }
+                        });
 
-                    // Showing Alert Message
-                    alertDialog.show();
+                        // Showing Alert Message
+                        alertDialog.show();
+                    }
 
-
-
-                }
 
             }
         });

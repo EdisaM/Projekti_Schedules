@@ -34,19 +34,31 @@
   </LinearLayout>
 
   <TextView
+      android:id="@+id/txtv1"
       android:layout_width="match_parent"
-      android:layout_height="295dp"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentStart="false"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="false"
 
+      android:layout_alignParentStart="false"
       android:layout_below="@+id/linearlayout6"
       android:paddingLeft="20dp"
       android:paddingRight="20dp"
       android:paddingTop="20dp"
-      android:text="BeProductive is a simple scheduling application to help people be more productive in their everyday life. Included are the statistics of your progress and some motivational quotes, however there is much more to come in the near future! Developed by: Diellza and Edisa. All feedback is appreciated at www.somewebsite.com. To enjoy the full experience of our app, please click on the arrow above, to add new activities and let it do its job.
+      android:text="BeProductive is a simple scheduling application to help people be more productive in their everyday life. Included are the statistics of your progress and some motivational quotes, however there is much more to come in the near future! All feedback is appreciated at www.somewebsite.com. To enjoy the full experience of our app, please click on the arrow above, to add new activities and let it do its job.
 You may ADD A NEW ACTIVITY, then track it on the TASKS module, after it's signed as completed, it will be moved to statistics where you can see your progress. For more, we will provide you with daily inspirational quotes."
       android:textAlignment="center"
       android:textSize="24sp" />
+
+  <TextView
+      android:id="@+id/textView3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_centerInParent="true"
+      android:layout_marginBottom="30dp"
+      android:layout_marginTop="20dp"
+      android:text="Developed by: Diellza and Edisa."
+      android:textSize="30sp" />
 
 
 </RelativeLayout>

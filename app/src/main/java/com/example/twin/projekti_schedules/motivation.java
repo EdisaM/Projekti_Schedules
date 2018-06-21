@@ -23,7 +23,6 @@ import org.w3c.dom.Text;
 
 import static com.example.twin.projekti_schedules.R.layout.listselector;
 
-// List view:(views)
 public class motivation extends AppCompatActivity {
     public static ArrayList<quotes> myQuotes= new ArrayList<quotes>();
 

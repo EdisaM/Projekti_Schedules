@@ -7,10 +7,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-/**
- * Created by Edisa on 6/20/2018.
- */
-
 public class Congratulations {
 
     public void showDialog(final Context context){

@@ -1,8 +1,5 @@
 package com.example.twin.projekti_schedules;
 
-/**
- * Created by Edisa on 5/24/2018.
- */
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -193,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
                 textInputLayoutPassword.setError(null);
             } else {
                 valid = false;
-                textInputLayoutPassword.setError("Password is to short!");
+                textInputLayoutPassword.setError("Password is too short!");
             }
         }
         String email = editTextEmail.getText().toString().trim();

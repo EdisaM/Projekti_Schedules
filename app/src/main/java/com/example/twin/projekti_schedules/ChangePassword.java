@@ -77,7 +77,6 @@ public class ChangePassword extends AppCompatActivity {
                 oldPwd = oldPwdEdit.getText().toString().trim();
                 newPwd = newPwdEdit.getText().toString().trim();
                 cnfrmPwd=cnfrmEdit.getText().toString().trim();
-
                 if(oldPwd==null||"".equalsIgnoreCase(oldPwd)){
                     String header = "Old password is required";
 
