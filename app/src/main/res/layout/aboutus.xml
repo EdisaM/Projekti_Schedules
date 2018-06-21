@@ -11,10 +11,9 @@
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="70dp"
+      android:background="@color/colorPrimary"
       app:title="BeProductive"
-      app:titleMarginStart="60dp"
-      app:titleTextColor="@android:color/white"
-      android:background="@color/colorPrimary" />
+      app:titleTextColor="@android:color/white" />
 
   <LinearLayout
       android:id="@+id/linearlayout6"
@@ -44,9 +43,10 @@
       android:paddingLeft="20dp"
       android:paddingRight="20dp"
       android:paddingTop="20dp"
-      android:text="BeProductive is a simple scheduling application to help people be more productive in their everyday life. Included are the statistics of your progress and some motivational quotes, however there is much more to come in the near future! Developed by: Edisa*Diellza. All feedback is appreciated: www.somewebsite.com"
+      android:text="BeProductive is a simple scheduling application to help people be more productive in their everyday life. Included are the statistics of your progress and some motivational quotes, however there is much more to come in the near future! Developed by: Diellza and Edisa. All feedback is appreciated at www.somewebsite.com. To enjoy the full experience of our app, please click on the arrow above, to add new activities and let it do its job.
+You may ADD A NEW ACTIVITY, then track it on the TASKS module, after it's signed as completed, it will be moved to statistics where you can see your progress. For more, we will provide you with daily inspirational quotes."
       android:textAlignment="center"
-      android:textSize="20dp" />
+      android:textSize="24sp" />
 
 
 </RelativeLayout>

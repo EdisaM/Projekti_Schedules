@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.view.View;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -81,6 +82,8 @@ public class ChangeDateTime {
                 tvName1=tvName.getText().toString().trim();
                 SqliteHelper db=new SqliteHelper(activity.getApplicationContext());
                 db.update_time(etTime1, etDate1, msg, msg2, name);
+                Toast.makeText(activity.getApplicationContext(),"Time and date changed",Toast.LENGTH_SHORT);
+
                 //db.update_time(tvTime.toString(),etTime1);
                 dialog.dismiss();
 

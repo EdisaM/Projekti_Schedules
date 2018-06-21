@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.twin.projekti_schedules.ViewActivity">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:background="@color/colorPrimary"
         app:title="BeProductive"
-        app:titleMarginStart="10dp"
-        app:titleTextColor="@android:color/white"
-        android:background="@color/colorPrimary" />
+        app:titleTextColor="@android:color/white" />
 
 
     <LinearLayout
